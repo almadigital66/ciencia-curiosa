@@ -118,5 +118,137 @@
     ],
     "dato_inspirador": "Sus descubrimientos han salvado millones de vidas.",
     "frase_famosa": "La ciencia no tiene patria, porque el conocimiento es patrimonio de la humanidad."
+  },
+  {
+    "nombre": "Johannes Kepler",
+    "aporte": "Leyes del movimiento planetario",
+    "categoria": "Astrofísica",
+    "curiosidades": [
+      "Descubrió que los planetas se mueven en órbitas elípticas.",
+      "Trabajó con Tycho Brahe para recopilar datos astronómicos.",
+      "Su madre fue acusada de brujería y él la defendió."
+    ],
+    "dato_inspirador": "Sus leyes sentaron las bases para la astronomía moderna.",
+    "frase_famosa": "La naturaleza usa las matemáticas como lenguaje."
+  },
+  {
+    "nombre": "Dmitri Mendeleev",
+    "aporte": "Tabla periódica de los elementos",
+    "categoria": "Química",
+    "curiosidades": [
+      "Soñó la tabla periódica y al despertar la escribió.",
+      "Dejó espacios vacíos para elementos aún no descubiertos.",
+      "Predijo las propiedades del galio y el germanio antes de ser descubiertos."
+    ],
+    "dato_inspirador": "Su organización de los elementos revolucionó la química.",
+    "frase_famosa": "La química es la ciencia de las transformaciones."
+  },
+  {
+    "nombre": "Alexander Fleming",
+    "aporte": "Descubrimiento de la penicilina",
+    "categoria": "Biología",
+    "curiosidades": [
+      "Descubrió la penicilina por accidente en un cultivo de bacterias.",
+      "Su descubrimiento ha salvado millones de vidas.",
+      "No patentó la penicilina para que fuera accesible."
+    ],
+    "dato_inspirador": "Su descubrimiento accidental cambió la medicina para siempre.",
+    "frase_famosa": "El azar favorece a la mente preparada."
+  },
+  {
+    "nombre": "Niels Bohr",
+    "aporte": "Modelo atómico y física cuántica",
+    "categoria": "Física",
+    "curiosidades": [
+      "Su modelo atómico explicó por qué los átomos son estables.",
+      "Ganó el Premio Nobel de Física en 1922.",
+      "Su hijo también ganó un Premio Nobel."
+    ],
+    "dato_inspirador": "Sus ideas sobre el átomo cambiaron la física moderna.",
+    "frase_famosa": "La verdad no es lo que nos gusta, sino lo que es."
+  },
+  {
+    "nombre": "Gregor Mendel",
+    "aporte": "Leyes de la herencia genética",
+    "categoria": "Biología",
+    "curiosidades": [
+      "Trabajó con guisantes para descubrir cómo se heredan los rasgos.",
+      "Sus descubrimientos fueron ignorados durante 35 años.",
+      "Era monje y dedicó su vida a la ciencia."
+    ],
+    "dato_inspirador": "Su trabajo es la base de la genética moderna.",
+    "frase_famosa": "La ciencia es la mejor forma de acercarse a la verdad."
+  },
+  {
+    "nombre": "Enrico Fermi",
+    "aporte": "Primer reactor nuclear controlado",
+    "categoria": "Física",
+    "curiosidades": [
+      "Construyó el primer reactor nuclear llamado 'Chicago Pile-1'.",
+      "Fue parte del Proyecto Manhattan.",
+      "Se le considera el 'arquitecto de la era nuclear'."
+    ],
+    "dato_inspirador": "Su trabajo abrió las puertas a la energía nuclear.",
+    "frase_famosa": "El conocimiento es el único bien que no tiene límites."
+  },
+  {
+    "nombre": "Alfred Nobel",
+    "aporte": "Dinamita y los Premios Nobel",
+    "categoria": "Química",
+    "curiosidades": [
+      "Inventó la dinamita para facilitar la construcción.",
+      "Se sintió culpable por los usos bélicos de su invento.",
+      "Creó los Premios Nobel para honrar a quienes beneficien a la humanidad."
+    ],
+    "dato_inspirador": "Su legado son los premios que llevan su nombre.",
+    "frase_famosa": "El hombre debe dedicarse a la ciencia por el bien de la humanidad."
+  },
+  {
+    "nombre": "Carl Sagan",
+    "aporte": "Divulgación científica y astronomía",
+    "categoria": "Astrofísica",
+    "curiosidades": [
+      "Creó la serie 'Cosmos' que inspiró a millones.",
+      "Fue asesor de la NASA en misiones espaciales.",
+      "Envió un mensaje al espacio con la nave Voyager."
+    ],
+    "dato_inspirador": "Hizo la ciencia accesible para el público general.",
+    "frase_famosa": "La curiosidad es la esencia de la existencia humana."
+  },
+  {
+    "nombre": "James Watson",
+    "aporte": "Estructura del ADN (doble hélice)",
+    "categoria": "Biología",
+    "curiosidades": [
+      "Descubrió la estructura del ADN junto a Francis Crick.",
+      "Tenía 25 años cuando hizo el descubrimiento.",
+      "Recibió el Premio Nobel a los 34 años."
+    ],
+    "dato_inspirador": "Su trabajo abrió la puerta a la biología molecular.",
+    "frase_famosa": "La ciencia avanza un funeral a la vez."
+  },
+  {
+    "nombre": "Max Planck",
+    "aporte": "Teoría cuántica",
+    "categoria": "Física",
+    "curiosidades": [
+      "Introdujo el concepto de 'cuanto' en la física.",
+      "Su trabajo fue el inicio de la física cuántica.",
+      "Ganó el Premio Nobel en 1918."
+    ],
+    "dato_inspirador": "Revolucionó la física con sus ideas sobre la energía.",
+    "frase_famosa": "La ciencia no puede resolver el misterio de la naturaleza."
+  },
+  {
+    "nombre": "Santiago Ramón y Cajal",
+    "aporte": "Teoría de la neurona (neurociencia)",
+    "categoria": "Biología",
+    "curiosidades": [
+      "Descubrió que las neuronas son células individuales.",
+      "Ganó el Premio Nobel de Medicina en 1906.",
+      "Era un excelente dibujante y dibujó sus descubrimientos."
+    ],
+    "dato_inspirador": "Su trabajo es fundamental para la neurociencia moderna.",
+    "frase_famosa": "El cerebro es un mundo de infinitas posibilidades."
   }
 ]
