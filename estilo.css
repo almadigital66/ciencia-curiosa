@@ -462,3 +462,38 @@ footer .footer-leyenda {
         gap: 40px;
     }
 }
+
+/* ====== BUSCADOR ====== */
+.buscador-container {
+    text-align: center;
+    margin: 15px 0 25px 0;
+}
+
+.buscador-container input {
+    width: 100%;
+    max-width: 500px;
+    padding: 12px 20px;
+    font-size: 1em;
+    border: 2px solid #E0E0E0;
+    border-radius: 30px;
+    outline: none;
+    transition: all 0.3s ease;
+    font-family: 'Georgia', 'Times New Roman', serif;
+}
+
+.buscador-container input:focus {
+    border-color: #2C3E50;
+    box-shadow: 0 0 10px rgba(44, 62, 80, 0.1);
+}
+
+.buscador-container input::placeholder {
+    color: #AAAAAA;
+    font-style: italic;
+}
+
+#contador-resultados {
+    display: block;
+    margin-top: 8px;
+    font-size: 0.9em;
+    color: #888888;
+}
