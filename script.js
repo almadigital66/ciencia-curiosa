@@ -1,7 +1,9 @@
 // =============================================
-// VARIABLE GLOBAL: Guardar todos los científicos
+// VARIABLES GLOBALES
 // =============================================
 let todosLosCientificos = [];
+let filtroActual = 'Todos';
+let textoBusqueda = '';
 
 // =============================================
 // CARGAR DATOS DESDE JSON
@@ -14,6 +16,7 @@ fetch('datos.json')
     .then(cientificos => {
         todosLosCientificos = cientificos;
         mostrarCientificos(cientificos);
+        actualizarContador(cientificos.length);
     })
     .catch(error => {
         document.getElementById('contenedor-cientificos').innerHTML = `
@@ -25,7 +28,7 @@ fetch('datos.json')
     });
 
 // =============================================
-// FUNCIÓN: Mostrar científicos en la página
+// FUNCIÓN: Mostrar científicos
 // =============================================
 function mostrarCientificos(cientificos) {
     const contenedor = document.getElementById('contenedor-cientificos');
@@ -34,9 +37,10 @@ function mostrarCientificos(cientificos) {
     if (cientificos.length === 0) {
         contenedor.innerHTML = `
             <div style="background:#F5F5F5;padding:30px;border-radius:8px;text-align:center;border:1px solid #E0E0E0;">
-                <p style="color:#666666;">No hay científicos en esta categoría.</p>
+                <p style="color:#666666;">No se encontraron científicos con ese nombre.</p>
             </div>
         `;
+        actualizarContador(0);
         return;
     }
 
@@ -65,42 +69,90 @@ function mostrarCientificos(cientificos) {
 
         contenedor.appendChild(tarjeta);
     });
+
+    actualizarContador(cientificos.length);
 }
 
 // =============================================
-// FUNCIÓN: FILTRAR POR CATEGORÍA
+// FUNCIÓN: Actualizar contador
 // =============================================
-function filtrarPorCategoria(categoria) {
-    if (categoria === 'Todos') {
-        mostrarCientificos(todosLosCientificos);
-    } else {
-        const filtrados = todosLosCientificos.filter(
-            c => c.categoria === categoria
-        );
-        mostrarCientificos(filtrados);
+function actualizarContador(cantidad) {
+    const contador = document.getElementById('contador-resultados');
+    if (contador) {
+        if (cantidad === 0) {
+            contador.textContent = 'No se encontraron resultados';
+            contador.style.color = '#FF6B6B';
+        } else if (cantidad === todosLosCientificos.length) {
+            contador.textContent = `Mostrando los ${cantidad} científicos disponibles`;
+            contador.style.color = '#888888';
+        } else {
+            contador.textContent = `Mostrando ${cantidad} de ${todosLosCientificos.length} científicos`;
+            contador.style.color = '#2C3E50';
+        }
     }
 }
 
 // =============================================
-// CONFIGURAR EVENTOS DE CATEGORÍAS
+// FUNCIÓN: FILTRAR POR CATEGORÍA + BÚSQUEDA
+// =============================================
+function aplicarFiltros() {
+    let resultado = todosLosCientificos;
+
+    // Filtrar por categoría
+    if (filtroActual !== 'Todos') {
+        resultado = resultado.filter(c => c.categoria === filtroActual);
+    }
+
+    // Filtrar por búsqueda (texto)
+    if (textoBusqueda.trim() !== '') {
+        const busqueda = textoBusqueda.toLowerCase().trim();
+        resultado = resultado.filter(c => 
+            c.nombre.toLowerCase().includes(busqueda)
+        );
+    }
+
+    mostrarCientificos(resultado);
+}
+
+// =============================================
+// FUNCIÓN: FILTRAR POR CATEGORÍA (desde el menú)
+// =============================================
+function filtrarPorCategoria(categoria) {
+    filtroActual = categoria;
+    aplicarFiltros();
+}
+
+// =============================================
+// CONFIGURAR EVENTOS
 // =============================================
 document.addEventListener('DOMContentLoaded', function() {
-    // Seleccionar todos los elementos de categoría
+    // ====== EVENTO: Buscador en tiempo real ======
+    const buscador = document.getElementById('buscador');
+    if (buscador) {
+        buscador.addEventListener('input', function() {
+            textoBusqueda = this.value;
+            aplicarFiltros();
+        });
+    }
+
+    // ====== EVENTO: Categorías ======
     const itemsCategoria = document.querySelectorAll('.categoria-item');
-    
     itemsCategoria.forEach(item => {
         item.addEventListener('click', function() {
             const categoria = this.getAttribute('data-categoria');
             filtrarPorCategoria(categoria);
             
-            // Resaltar la categoría seleccionada
-            itemsCategoria.forEach(i => i.style.borderColor = '#E0E0E0');
+            // Resaltar categoría seleccionada
+            itemsCategoria.forEach(i => {
+                i.style.borderColor = '#E0E0E0';
+                i.style.borderWidth = '2px';
+            });
             this.style.borderColor = '#2C3E50';
             this.style.borderWidth = '2px';
         });
     });
 
-    // Agregar opción "Todos" al menú
+    // ====== EVENTO: "Todos" en el menú ======
     const menu = document.querySelector('.menu');
     const linkTodos = document.createElement('a');
     linkTodos.href = '#cientificos';
@@ -108,11 +160,16 @@ document.addEventListener('DOMContentLoaded', function() {
     linkTodos.className = 'activo';
     linkTodos.addEventListener('click', function(e) {
         e.preventDefault();
-        filtrarPorCategoria('Todos');
+        filtroActual = 'Todos';
+        textoBusqueda = '';
+        const buscador = document.getElementById('buscador');
+        if (buscador) buscador.value = '';
+        aplicarFiltros();
+        
         // Quitar resaltado de categorías
         document.querySelectorAll('.categoria-item').forEach(i => {
             i.style.borderColor = '#E0E0E0';
-            i.style.borderWidth = '1px';
+            i.style.borderWidth = '2px';
         });
     });
     menu.appendChild(linkTodos);
