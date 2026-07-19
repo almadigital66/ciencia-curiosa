@@ -1,0 +1,62 @@
+[
+  {
+    "nombre": "Albert Einstein",
+    "aporte": "Teoría de la Relatividad (E = mc²)",
+    "categoria": "Física",
+    "curiosidades": [
+      "Sacaba la lengua en todas las fotos. ¡Era su sello personal!",
+      "Rechazó ser presidente de Israel, prefirió la ciencia",
+      "Nunca usaba calcetines, decía que los dedos necesitaban libertad"
+    ],
+    "dato_inspirador": "Fue un mal estudiante en la escuela, pero cambió la física para siempre",
+    "frase_famosa": "La imaginación es más importante que el conocimiento"
+  },
+  {
+    "nombre": "Marie Curie",
+    "aporte": "Descubrimiento del Radio y el Polonio",
+    "categoria": "Química",
+    "curiosidades": [
+      "Única persona con 2 Premios Nobel en ciencias distintas (Física y Química)",
+      "Sus cuadernos de laboratorio de 1890 aún son radiactivos",
+      "Murió por exposición a la radiación, pero amaba la ciencia"
+    ],
+    "dato_inspirador": "Primera mujer en dar clases en la Universidad de París",
+    "frase_famosa": "Nada en la vida debe ser temido, solo comprendido"
+  },
+  {
+    "nombre": "Isaac Newton",
+    "aporte": "Leyes de la Gravedad y el Cálculo",
+    "categoria": "Física",
+    "curiosidades": [
+      "Se obsesionó con la alquimia y pasó años buscando la piedra filosofal",
+      "Creó el telescopio reflector que revolucionó la astronomía",
+      "Nunca se casó ni tuvo hijos conocidos"
+    ],
+    "dato_inspirador": "Sus descubrimientos siguen vigentes más de 300 años después",
+    "frase_famosa": "Lo que sabemos es una gota; lo que ignoramos, un océano"
+  },
+  {
+    "nombre": "Stephen Hawking",
+    "aporte": "Radiación Hawking (agujeros negros emiten energía)",
+    "categoria": "Astrofísica",
+    "curiosidades": [
+      "Su voz era generada por una computadora, era su sello personal",
+      "Apareció en Los Simpson, Star Trek y The Big Bang Theory",
+      "Los médicos le dieron 2 años de vida, pero vivió 76 años"
+    ],
+    "dato_inspirador": "Demostró que la mente es más poderosa que el cuerpo",
+    "frase_famosa": "Mientras haya vida, hay esperanza"
+  },
+  {
+    "nombre": "Rosalind Franklin",
+    "aporte": "Descubrió la estructura del ADN (doble hélice)",
+    "categoria": "Biología",
+    "curiosidades": [
+      "Su famosa 'Foto 51' fue clave para descifrar el ADN",
+      "No recibió el Premio Nobel, se lo dieron a Watson y Crick",
+      "Era experta en cristalografía de rayos X"
+    ],
+    "dato_inspirador": "Su trabajo fue fundamental para la biología moderna, aunque no fue reconocida en vida",
+    "frase_famosa": "La ciencia y la vida no pueden separarse"
+  }
+]
