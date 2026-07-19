@@ -1,4 +1,4 @@
-/* ====== RESETEO DE ESTILOS ====== */
+/* ====== RESETEO ====== */
 * {
     margin: 0;
     padding: 0;
@@ -6,94 +6,97 @@
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: #0A0E27;  /* Fondo azul espacial */
-    color: #E8F0FE;        /* Texto blanco azulado */
+    font-family: 'Georgia', 'Times New Roman', serif;
+    background: #FFFFFF;
+    color: #1A1A1A;
     padding: 20px;
-    min-height: 100vh;
+    max-width: 900px;
+    margin: 0 auto;
+    line-height: 1.6;
 }
 
-/* ====== CABECERA ====== */
+/* ====== CABECERA FORMAL ====== */
 header {
     text-align: center;
-    padding: 30px 0 25px 0;
-    border-bottom: 3px solid #00D4FF;  /* Línea cian */
-    margin-bottom: 30px;
+    padding: 40px 0 30px 0;
+    border-bottom: 2px solid #E0E0E0;
+    margin-bottom: 40px;
 }
 
 header h1 {
-    font-size: 2.5em;
-    color: #00D4FF;          /* Título en cian eléctrico */
-    text-shadow: 0 0 20px #00D4FF44;
+    font-size: 2.8em;
+    font-weight: 700;
+    color: #2C3E50;
     letter-spacing: 2px;
+    margin-bottom: 8px;
 }
 
 header p {
     font-size: 1.2em;
-    opacity: 0.8;
-    margin-top: 8px;
+    color: #666666;
+    font-style: italic;
 }
 
-/* ====== CONTENEDOR DE CIENTÍFICOS ====== */
+/* ====== CONTENEDOR PRINCIPAL ====== */
 #contenedor-cientificos {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 25px;
-    max-width: 700px;
-    margin: 0 auto 30px auto;
+    gap: 30px;
+    margin-bottom: 40px;
 }
 
-/* ====== TARJETA DE CIENTÍFICO ====== */
+/* ====== TARJETA FORMAL ====== */
 .cientifico {
-    background: #1A1F3E;      /* Fondo azul medianoche */
-    border-radius: 20px;
-    padding: 22px 25px;
+    background: #F5F5F5;
+    border-radius: 8px;
+    padding: 25px 30px;
     cursor: pointer;
-    transition: all 0.3s ease;
-    border-left: 5px solid #00D4FF;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+    transition: all 0.2s ease;
+    border: 1px solid #E0E0E0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
 .cientifico:hover {
-    transform: scale(1.02);
-    background: #24294A;
-    box-shadow: 0 12px 35px rgba(0, 212, 255, 0.15);
+    background: #EEEEEE;
+    border-color: #CCCCCC;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
 }
 
 .cientifico h2 {
-    color: #00D4FF;
     font-size: 1.8em;
-    margin-bottom: 5px;
+    color: #2C3E50;
+    font-weight: 700;
+    margin-bottom: 4px;
+    letter-spacing: 0.5px;
 }
 
 .cientifico .categoria {
     display: inline-block;
-    background: #00D4FF22;
-    color: #00D4FF;
-    padding: 4px 16px;
-    border-radius: 30px;
-    font-size: 0.8em;
-    font-weight: bold;
-    letter-spacing: 1px;
-    margin: 5px 0 10px 0;
+    background: #EAEAEA;
+    color: #555555;
+    padding: 3px 14px;
+    border-radius: 20px;
+    font-size: 0.75em;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin: 6px 0 12px 0;
 }
 
 .cientifico .aporte {
-    font-size: 1.1em;
-    font-weight: bold;
-    color: #E8F0FE;
-    margin: 8px 0 5px 0;
-    padding: 8px 12px;
-    background: #00D4FF11;
-    border-radius: 10px;
+    font-size: 1.05em;
+    color: #1A1A1A;
+    padding: 10px 0 0 0;
+    border-top: 1px solid #E0E0E0;
+    margin-top: 6px;
 }
 
-/* ====== DETALLES OCULTOS (se muestran al tocar) ====== */
+/* ====== DETALLES (ocultos inicialmente) ====== */
 .cientifico .detalles {
     display: none;
-    margin-top: 18px;
-    padding-top: 18px;
-    border-top: 2px dashed #00D4FF44;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #DDDDDD;
     animation: fadeIn 0.3s ease;
 }
 
@@ -102,48 +105,53 @@ header p {
 }
 
 .cientifico .detalles h3 {
-    color: #FF6B6B;
-    font-size: 1.2em;
-    margin-bottom: 10px;
+    font-size: 1.1em;
+    font-weight: 700;
+    color: #2C3E50;
+    margin-bottom: 12px;
+    letter-spacing: 0.3px;
 }
 
 .cientifico .curiosidad {
-    background: #FF6B6B11;
-    padding: 12px 15px;
-    border-radius: 12px;
+    background: #FFFFFF;
+    padding: 12px 16px;
+    border-left: 3px solid #999999;
     margin: 10px 0;
-    border-left: 4px solid #FF6B6B;
-    color: #F0E8E8;
+    color: #333333;
+    font-size: 0.95em;
 }
 
 .cientifico .frase {
     font-style: italic;
-    color: #FFD93D;
-    margin-top: 15px;
-    padding: 15px;
-    background: #FFD93D11;
-    border-radius: 12px;
-    border-left: 4px solid #FFD93D;
+    color: #4A4A4A;
+    margin-top: 16px;
+    padding: 16px 20px;
+    background: #FFFFFF;
+    border-radius: 4px;
+    border-left: 3px solid #2C3E50;
     font-size: 1.05em;
 }
 
 .cientifico .inspiracion {
     margin-top: 12px;
-    padding: 12px;
-    background: #00D4FF11;
-    border-radius: 12px;
-    border-left: 4px solid #00D4FF;
+    padding: 12px 16px;
+    background: #FFFFFF;
+    border-radius: 4px;
+    border-left: 3px solid #AAAAAA;
+    font-size: 0.95em;
+    color: #333333;
 }
 
 .cientifico .inspiracion strong {
-    color: #00D4FF;
+    color: #2C3E50;
+    font-weight: 600;
 }
 
 /* ====== ANIMACIÓN ====== */
 @keyframes fadeIn {
     from {
         opacity: 0;
-        transform: translateY(-10px);
+        transform: translateY(-8px);
     }
     to {
         opacity: 1;
@@ -151,30 +159,26 @@ header p {
     }
 }
 
-/* ====== PIE DE PÁGINA ====== */
+/* ====== PIE DE PÁGINA FORMAL ====== */
 footer {
     text-align: center;
-    padding: 30px 0 20px 0;
+    padding: 35px 0 25px 0;
+    border-top: 2px solid #E0E0E0;
     margin-top: 20px;
-    border-top: 1px solid #1A1F3E;
-    opacity: 0.7;
-    font-size: 0.95em;
-    max-width: 700px;
-    margin-left: auto;
-    margin-right: auto;
+    color: #888888;
+    font-size: 0.9em;
 }
 
-/* ====== RESPONSIVE (para pantallas más grandes) ====== */
+footer .footer-leyenda {
+    font-size: 0.8em;
+    color: #AAAAAA;
+    margin-top: 5px;
+    font-style: italic;
+}
+
+/* ====== RESPONSIVE ====== */
 @media (min-width: 768px) {
     #contenedor-cientificos {
         grid-template-columns: 1fr 1fr;
-        max-width: 900px;
-    }
-}
-
-@media (min-width: 1200px) {
-    #contenedor-cientificos {
-        grid-template-columns: 1fr 1fr 1fr;
-        max-width: 1200px;
     }
 }
