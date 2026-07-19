@@ -1,6 +1,7 @@
 // =============================================
 // VARIABLES GLOBALES
 // =============================================
+let ordenActual = 'asc'; // 'asc' o 'desc'
 let todosLosCientificos = [];
 let filtroActual = 'Todos';
 let textoBusqueda = '';
@@ -145,6 +146,17 @@ function aplicarFiltros() {
             c.nombre.toLowerCase().includes(busqueda)
         );
     }
+
+    // Ordenar alfabéticamente
+    resultado = [...resultado].sort((a, b) => {
+        const nombreA = a.nombre.toLowerCase();
+        const nombreB = b.nombre.toLowerCase();
+        if (ordenActual === 'asc') {
+            return nombreA.localeCompare(nombreB);
+        } else {
+            return nombreB.localeCompare(nombreA);
+        }
+    });
 
     mostrarCientificos(resultado);
 }
