@@ -6,6 +6,7 @@
 
 html {
     scroll-behavior: smooth;
+    transition: background 0.3s ease, color 0.3s ease;
 }
 
 body {
@@ -16,6 +17,150 @@ body {
     max-width: 1200px;
     margin: 0 auto;
     line-height: 1.6;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* ====== MODO OSCURO ====== */
+body.modo-oscuro {
+    background: #1A1A2E;
+    color: #E8E8E8;
+}
+
+body.modo-oscuro header h1 {
+    color: #E8E8E8;
+}
+
+body.modo-oscuro header p {
+    color: #AAAAAA;
+}
+
+body.modo-oscuro .menu a {
+    color: #AAAAAA;
+}
+
+body.modo-oscuro .menu a:hover {
+    color: #FFFFFF;
+}
+
+body.modo-oscuro .menu a.activo {
+    color: #FFFFFF;
+    border-bottom-color: #FFFFFF;
+}
+
+body.modo-oscuro #inicio {
+    background: #2A2A4A;
+    border-color: #3A3A5A;
+}
+
+body.modo-oscuro .bienvenida h2 {
+    color: #E8E8E8;
+}
+
+body.modo-oscuro .bienvenida p {
+    color: #CCCCCC;
+}
+
+body.modo-oscuro .bienvenida .frase-destacada {
+    color: #E8E8E8;
+}
+
+body.modo-oscuro .categoria-item {
+    background: #2A2A4A;
+    border-color: #3A3A5A;
+}
+
+body.modo-oscuro .categoria-item h3 {
+    color: #E8E8E8;
+}
+
+body.modo-oscuro .categoria-item p {
+    color: #AAAAAA;
+}
+
+body.modo-oscuro .categoria-item:hover {
+    background: #3A3A5A;
+}
+
+body.modo-oscuro .cientifico {
+    background: #2A2A4A;
+    border-color: #3A3A5A;
+}
+
+body.modo-oscuro .cientifico h2 {
+    color: #E8E8E8;
+}
+
+body.modo-oscuro .cientifico .aporte {
+    color: #CCCCCC;
+    border-color: #3A3A5A;
+}
+
+body.modo-oscuro .cientifico .categoria {
+    background: #3A3A5A;
+    color: #CCCCCC;
+}
+
+body.modo-oscuro .cientifico .curiosidad {
+    background: #3A3A5A;
+    color: #E8E8E8;
+}
+
+body.modo-oscuro .cientifico .frase {
+    background: #3A3A5A;
+    color: #E8E8E8;
+}
+
+body.modo-oscuro .cientifico .inspiracion {
+    background: #3A3A5A;
+    color: #E8E8E8;
+}
+
+body.modo-oscuro .cientifico-destacado {
+    background: #2A2A4A;
+    border-color: #4A4A6A;
+}
+
+body.modo-oscuro .cientifico-destacado h3 {
+    color: #E8E8E8;
+}
+
+body.modo-oscuro .cientifico-destacado .frase-destacada {
+    background: #3A3A5A;
+    color: #E8E8E8;
+}
+
+body.modo-oscuro .cientifico-destacado .aporte-destacado {
+    color: #CCCCCC;
+}
+
+body.modo-oscuro #cientificos h2 {
+    color: #E8E8E8;
+    border-color: #3A3A5A;
+}
+
+body.modo-oscuro #categorias h2 {
+    color: #E8E8E8;
+    border-color: #3A3A5A;
+}
+
+body.modo-oscuro #estadisticas h2 {
+    color: #E8E8E8;
+    border-color: #3A3A5A;
+}
+
+body.modo-oscuro .buscador-container input {
+    background: #2A2A4A;
+    color: #E8E8E8;
+    border-color: #3A3A5A;
+}
+
+body.modo-oscuro .buscador-container input::placeholder {
+    color: #888888;
+}
+
+body.modo-oscuro footer {
+    border-color: #3A3A5A;
+    color: #888888;
 }
 
 header {
@@ -31,12 +176,36 @@ header h1 {
     color: #2C3E50;
     letter-spacing: 2px;
     margin-bottom: 5px;
+    transition: color 0.3s ease;
 }
 
 header p {
     font-size: 1em;
     color: #666666;
     font-style: italic;
+    transition: color 0.3s ease;
+}
+
+.btn-modo {
+    background: none;
+    border: 2px solid #E0E0E0;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    font-size: 1.5em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: #F5F5F5;
+}
+
+.btn-modo:hover {
+    transform: scale(1.1);
+    border-color: #2C3E50;
+}
+
+body.modo-oscuro .btn-modo {
+    background: #2A2A4A;
+    border-color: #3A3A5A;
 }
 
 .menu {
@@ -55,7 +224,7 @@ header p {
     font-size: 1em;
     font-weight: 600;
     padding: 5px 10px;
-    transition: color 0.3s ease;
+    transition: all 0.3s ease;
     border-bottom: 2px solid transparent;
     cursor: pointer;
 }
@@ -76,6 +245,7 @@ header p {
     margin-bottom: 40px;
     text-align: center;
     border: 1px solid #E0E0E0;
+    transition: all 0.3s ease;
 }
 
 .bienvenida h2 {
@@ -268,6 +438,7 @@ header p {
     display: flex;
     gap: 20px;
     align-items: flex-start;
+    position: relative;
 }
 
 .cientifico:hover {
@@ -381,31 +552,190 @@ header p {
     font-weight: 600;
 }
 
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-8px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+/* ====== ESTADÍSTICAS ====== */
+#estadisticas {
+    margin: 40px 0;
 }
 
-footer {
+#estadisticas h2 {
+    font-size: 1.6em;
+    color: #2C3E50;
     text-align: center;
-    padding: 30px 0 20px 0;
-    border-top: 2px solid #E0E0E0;
-    margin-top: 15px;
-    color: #888888;
-    font-size: 0.85em;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #E0E0E0;
+    padding-bottom: 10px;
 }
 
-footer .footer-leyenda {
+.estadisticas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.estadistica-item {
+    background: #F5F5F5;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    border: 1px solid #E0E0E0;
+}
+
+.estadistica-item .numero {
+    font-size: 2.5em;
+    font-weight: 700;
+    color: #2C3E50;
+}
+
+.estadistica-item .etiqueta {
+    font-size: 0.9em;
+    color: #666666;
+    margin-top: 5px;
+}
+
+/* ====== BOTONES DE COMPARTIR ====== */
+.compartir-botones {
+    display: flex;
+    gap: 8px;
+    margin-top: 12px;
+    flex-wrap: wrap;
+}
+
+.btn-compartir {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 20px;
     font-size: 0.75em;
-    color: #AAAAAA;
-    margin-top: 4px;
-    font-style: italic;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    color: #FFFFFF;
+    gap: 4px;
+    font-family: 'Georgia', 'Times New Roman', serif;
+}
+
+.btn-compartir:hover {
+    transform: scale(1.05);
+}
+
+.btn-whatsapp { background: #25D366; }
+.btn-whatsapp:hover { background: #128C7E; }
+
+.btn-twitter { background: #1DA1F2; }
+.btn-twitter:hover { background: #0A7FC4; }
+
+.btn-facebook { background: #4267B2; }
+.btn-facebook:hover { background: #365899; }
+
+.btn-copiar { background: #6C757D; }
+.btn-copiar:hover { background: #5A6268; }
+
+/* ====== BOTÓN LIKE ====== */
+.btn-like {
+    background: none;
+    border: 2px solid #E0E0E0;
+    border-radius: 20px;
+    padding: 4px 14px;
+    font-size: 0.85em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Georgia', 'Times New Roman', serif;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.btn-like:hover {
+    border-color: #FF6B6B;
+}
+
+.btn-like.activo {
+    border-color: #FF6B6B;
+    background: #FF6B6B22;
+}
+
+body.modo-oscuro .btn-like {
+    border-color: #3A3A5A;
+}
+
+body.modo-oscuro .btn-like.activo {
+    border-color: #FF6B6B;
+}
+
+/* ====== CIENTÍFICOS RELACIONADOS ====== */
+.relacionados {
+    margin-top: 15px;
+    padding: 12px 16px;
+    background: #FFFFFF;
+    border-radius: 8px;
+    border-left: 3px solid #2C3E50;
+}
+
+.relacionados strong {
+    color: #2C3E50;
+}
+
+.relacionados a {
+    display: inline-block;
+    color: #2C3E50;
+    text-decoration: none;
+    font-weight: 600;
+    margin: 0 8px 0 0;
+    padding: 2px 8px;
+    border-radius: 12px;
+    background: #F0F0F0;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.relacionados a:hover {
+    background: #E0E0E0;
+    transform: scale(1.05);
+}
+
+body.modo-oscuro .relacionados {
+    background: #3A3A5A;
+}
+
+body.modo-oscuro .relacionados a {
+    background: #4A4A6A;
+    color: #E8E8E8;
+}
+
+/* ====== BOTÓN VOLVER ARRIBA ====== */
+#btnVolverArriba {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: #2C3E50;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 50%;
+    width: 55px;
+    height: 55px;
+    font-size: 1.8em;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    opacity: 0;
+    visibility: hidden;
+    z-index: 1000;
+}
+
+#btnVolverArriba:hover {
+    background: #1A2A3A;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+#btnVolverArriba.visible {
+    opacity: 1;
+    visibility: visible;
 }
 
 .buscador-container {
@@ -433,6 +763,8 @@ footer .footer-leyenda {
     outline: none;
     transition: all 0.3s ease;
     font-family: 'Georgia', 'Times New Roman', serif;
+    background: #FFFFFF;
+    color: #1A1A1A;
 }
 
 .buscador-container input:focus {
@@ -470,45 +802,35 @@ footer .footer-leyenda {
     color: #888888;
 }
 
-#btnVolverArriba {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    background: #2C3E50;
-    color: #FFFFFF;
-    border: none;
-    border-radius: 50%;
-    width: 55px;
-    height: 55px;
-    font-size: 1.8em;
-    cursor: pointer;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    transition: all 0.3s ease;
-    opacity: 0;
-    visibility: hidden;
-    z-index: 1000;
+footer {
+    text-align: center;
+    padding: 30px 0 20px 0;
+    border-top: 2px solid #E0E0E0;
+    margin-top: 15px;
+    color: #888888;
+    font-size: 0.85em;
 }
 
-#btnVolverArriba:hover {
-    background: #1A2A3A;
-    transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+footer .footer-leyenda {
+    font-size: 0.75em;
+    color: #AAAAAA;
+    margin-top: 4px;
+    font-style: italic;
 }
 
-#btnVolverArriba.visible {
-    opacity: 1;
-    visibility: visible;
-}
-
-@media (max-width: 480px) {
-    #btnVolverArriba {
-        width: 45px;
-        height: 45px;
-        font-size: 1.4em;
-        bottom: 20px;
-        right: 20px;
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-8px);
     }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 
+/* ====== RESPONSIVE ====== */
+@media (max-width: 600px) {
     .cientifico {
         flex-direction: column;
         align-items: center;
@@ -518,6 +840,24 @@ footer .footer-leyenda {
     .cientifico .imagen-container {
         width: 100px;
         height: 100px;
+    }
+
+    .compartir-botones {
+        justify-content: center;
+    }
+
+    #btnVolverArriba {
+        width: 45px;
+        height: 45px;
+        font-size: 1.4em;
+        bottom: 20px;
+        right: 20px;
+    }
+
+    .btn-modo {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2em;
     }
 }
 
@@ -584,8 +924,12 @@ footer .footer-leyenda {
         font-size: 1.3em;
     }
 
-    #categorias h2, #cientificos h2 {
+    #categorias h2, #cientificos h2, #estadisticas h2 {
         font-size: 1.8em;
+    }
+
+    .estadisticas-grid {
+        grid-template-columns: repeat(5, 1fr);
     }
 }
 
@@ -646,17 +990,5 @@ footer .footer-leyenda {
 
     .bienvenida .frase-destacada {
         font-size: 1.6em;
-    }
-}
-
-@media (min-width: 1400px) {
-    body {
-        padding: 50px;
-        max-width: 1400px;
-    }
-
-    #contenedor-cientificos {
-        grid-template-columns: 1fr 1fr 1fr 1fr;
-        gap: 40px;
     }
 }
