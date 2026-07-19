@@ -554,4 +554,109 @@ footer .footer-leyenda {
         font-size: 1.1em;
     }
 
-    .bienvenida .frase-destacada
+    .bienvenida .frase-destacada {
+        font-size: 1.4em;
+    }
+
+    #contenedor-cientificos {
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+    }
+
+    .cientifico h2 {
+        font-size: 1.6em;
+    }
+
+    .cientifico {
+        padding: 25px 30px;
+    }
+
+    .grid-categorias {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+    }
+
+    .categoria-item {
+        padding: 25px 20px;
+    }
+
+    .categoria-item h3 {
+        font-size: 1.3em;
+    }
+
+    #categorias h2, #cientificos h2 {
+        font-size: 1.8em;
+    }
+}
+
+@media (min-width: 1024px) {
+    body {
+        padding: 40px;
+        max-width: 1200px;
+    }
+
+    header h1 {
+        font-size: 3.5em;
+    }
+
+    #contenedor-cientificos {
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 35px;
+    }
+
+    .cientifico {
+        padding: 30px 35px;
+    }
+
+    .cientifico h2 {
+        font-size: 1.7em;
+    }
+
+    .menu {
+        gap: 45px;
+    }
+
+    .menu a {
+        font-size: 1.15em;
+    }
+
+    .grid-categorias {
+        gap: 25px;
+    }
+
+    .categoria-item {
+        padding: 30px 25px;
+    }
+
+    .categoria-item h3 {
+        font-size: 1.4em;
+    }
+
+    #inicio {
+        padding: 60px 50px;
+    }
+
+    .bienvenida h2 {
+        font-size: 2.5em;
+    }
+
+    .bienvenida p {
+        font-size: 1.2em;
+    }
+
+    .bienvenida .frase-destacada {
+        font-size: 1.6em;
+    }
+}
+
+@media (min-width: 1400px) {
+    body {
+        padding: 50px;
+        max-width: 1400px;
+    }
+
+    #contenedor-cientificos {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        gap: 40px;
+    }
+}
