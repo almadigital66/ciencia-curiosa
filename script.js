@@ -1,8 +1,13 @@
+// =============================================
+// VARIABLES GLOBALES
+// =============================================
 let todosLosCientificos = [];
 let filtroActual = 'Todos';
 let textoBusqueda = '';
 let ordenActual = 'asc';
 let likes = {};
+let paginaActual = 1;
+const POR_PAGINA = 6;
 
 // =============================================
 // CARGAR DATOS
@@ -14,11 +19,10 @@ fetch('datos.json')
     })
     .then(cientificos => {
         todosLosCientificos = cientificos;
-        mostrarCientificos(cientificos);
-        actualizarContador(cientificos.length);
+        cargarLikes();
+        aplicarFiltros();
         mostrarCientificoDelDia();
         mostrarEstadisticas();
-        cargarLikes();
     })
     .catch(error => {
         document.getElementById('contenedor-cientificos').innerHTML = `
@@ -27,7 +31,32 @@ fetch('datos.json')
                 <p>Verifica que el archivo <strong>datos.json</strong> esté presente.</p>
             </div>
         `;
+        mostrarNotificacion('Error al cargar los datos', 'error');
     });
+
+// =============================================
+// NOTIFICACIONES
+// =============================================
+function mostrarNotificacion(mensaje, tipo = 'info') {
+    const notif = document.getElementById('notificacion');
+    if (!notif) return;
+    
+    notif.textContent = mensaje;
+    notif.className = 'notificacion visible';
+    
+    if (tipo === 'error') {
+        notif.style.background = '#DC3545';
+    } else if (tipo === 'success') {
+        notif.style.background = '#28A745';
+    } else {
+        notif.style.background = '#2C3E50';
+    }
+    
+    clearTimeout(notif.timeout);
+    notif.timeout = setTimeout(() => {
+        notif.classList.remove('visible');
+    }, 3000);
+}
 
 // =============================================
 // LIKES (localStorage)
@@ -46,11 +75,12 @@ function guardarLikes() {
 function toggleLike(nombre) {
     if (likes[nombre]) {
         delete likes[nombre];
+        mostrarNotificacion(`❤️ Quitaste tu like a ${nombre}`);
     } else {
         likes[nombre] = true;
+        mostrarNotificacion(`❤️ Te gusta ${nombre}`);
     }
     guardarLikes();
-    // Recargar la vista actual
     aplicarFiltros();
 }
 
@@ -83,10 +113,12 @@ function actualizarContadoresCategorias(conteo) {
 }
 
 // =============================================
-// MOSTRAR CIENTÍFICOS
+// MOSTRAR CIENTÍFICOS CON PAGINACIÓN
 // =============================================
 function mostrarCientificos(cientificos) {
     const contenedor = document.getElementById('contenedor-cientificos');
+    const btnCargarMas = document.getElementById('btnCargarMas');
+    const infoPaginacion = document.getElementById('info-paginacion');
     contenedor.innerHTML = '';
 
     const conteo = contarPorCategoria(todosLosCientificos);
@@ -98,15 +130,22 @@ function mostrarCientificos(cientificos) {
                 <p style="color:#666666;">No se encontraron científicos con ese nombre.</p>
             </div>
         `;
+        btnCargarMas.style.display = 'none';
+        infoPaginacion.textContent = '';
         actualizarContador(0);
         return;
     }
 
-    cientificos.forEach(cientifico => {
+    const total = cientificos.length;
+    const totalPaginas = Math.ceil(total / POR_PAGINA);
+    const inicio = (paginaActual - 1) * POR_PAGINA;
+    const fin = Math.min(inicio + POR_PAGINA, total);
+    const paginados = cientificos.slice(inicio, fin);
+
+    paginados.forEach(cientifico => {
         const tarjeta = document.createElement('div');
         tarjeta.className = 'cientifico';
 
-        // Obtener científicos relacionados (misma categoría, excluyéndose a sí mismo)
         const relacionados = todosLosCientificos
             .filter(c => c.categoria === cientifico.categoria && c.nombre !== cientifico.nombre)
             .slice(0, 3);
@@ -114,17 +153,17 @@ function mostrarCientificos(cientificos) {
         const likeActivo = likes[cientifico.nombre] || false;
 
         tarjeta.innerHTML = `
-            <div class="imagen-container">
-                <img src="${cientifico.imagen || 'https://via.placeholder.com/80'}" alt="${cientifico.nombre}" loading="lazy" onerror="this.src='https://via.placeholder.com/80'">
-            </div>
             <div class="contenido">
                 <h2>${cientifico.nombre}</h2>
                 <span class="categoria">${cientifico.categoria || 'Científico'}</span>
                 <div class="aporte">${cientifico.aporte}</div>
                 
-                <div style="display: flex; gap: 10px; flex-wrap: wrap; margin: 8px 0;">
+                <div class="acciones">
                     <button class="btn-like ${likeActivo ? 'activo' : ''}" data-nombre="${cientifico.nombre}">
                         ${likeActivo ? '❤️' : '🤍'} <span class="like-text">${likeActivo ? 'Me gusta' : 'Me gusta'}</span>
+                    </button>
+                    <button class="btn-pdf" data-nombre="${cientifico.nombre}">
+                        📄 PDF
                     </button>
                 </div>
 
@@ -155,8 +194,7 @@ function mostrarCientificos(cientificos) {
 
         // Evento para mostrar/ocultar detalles
         tarjeta.addEventListener('click', function(e) {
-            // Si el clic fue en un botón o enlace, no togglear
-            if (e.target.closest('.btn-like') || e.target.closest('.btn-compartir') || e.target.closest('.ver-mas') || e.target.closest('.relacionados a')) {
+            if (e.target.closest('.btn-like') || e.target.closest('.btn-compartir') || e.target.closest('.ver-mas') || e.target.closest('.relacionados a') || e.target.closest('.btn-pdf')) {
                 return;
             }
             const detalles = this.querySelector('.detalles');
@@ -170,26 +208,97 @@ function mostrarCientificos(cientificos) {
                 e.stopPropagation();
                 const nombre = this.getAttribute('data-nombre');
                 toggleLike(nombre);
-                const likeActivo = likes[nombre] || false;
-                this.classList.toggle('activo');
-                this.innerHTML = `${likeActivo ? '❤️' : '🤍'} <span class="like-text">${likeActivo ? 'Me gusta' : 'Me gusta'}</span>`;
+            });
+        }
+
+        // Evento para el botón PDF
+        const btnPDF = tarjeta.querySelector('.btn-pdf');
+        if (btnPDF) {
+            btnPDF.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const nombre = this.getAttribute('data-nombre');
+                exportarPDF(nombre);
             });
         }
 
         contenedor.appendChild(tarjeta);
     });
 
+    // Control de paginación
+    if (paginaActual < totalPaginas) {
+        btnCargarMas.style.display = 'inline-block';
+        btnCargarMas.textContent = `Cargar más (${fin}/${total})`;
+        infoPaginacion.textContent = `Mostrando ${fin} de ${total} científicos`;
+    } else {
+        btnCargarMas.style.display = 'none';
+        infoPaginacion.textContent = `Mostrando todos los ${total} científicos`;
+    }
+
     actualizarContador(cientificos.length);
 }
 
 // =============================================
-// COMPARTIR - COPIAR ENLACE
+// EXPORTAR A PDF
+// =============================================
+function exportarPDF(nombre) {
+    const cientifico = todosLosCientificos.find(c => c.nombre === nombre);
+    if (!cientifico) {
+        mostrarNotificacion('Científico no encontrado', 'error');
+        return;
+    }
+
+    mostrarNotificacion(`📄 Generando PDF de ${nombre}...`, 'info');
+
+    // Usamos window.print() para generar PDF desde el navegador
+    const contenidoOriginal = document.body.innerHTML;
+    
+    const contenidoPDF = `
+        <div style="font-family: 'Georgia', serif; max-width: 800px; margin: 40px auto; padding: 30px; line-height: 1.8;">
+            <h1 style="color: #2C3E50; border-bottom: 3px solid #2C3E50; padding-bottom: 10px;">${cientifico.nombre}</h1>
+            <p style="font-size: 1.1em; color: #555;"><strong>Categoría:</strong> ${cientifico.categoria}</p>
+            <p style="font-size: 1.1em;"><strong>Aporte:</strong> ${cientifico.aporte}</p>
+            
+            <h2 style="color: #2C3E50; margin-top: 25px;">Curiosidades</h2>
+            <ul style="padding-left: 20px;">
+                ${cientifico.curiosidades.map(c => `<li style="margin: 8px 0;">${c}</li>`).join('')}
+            </ul>
+            
+            <div style="background: #F5F5F5; padding: 20px; border-radius: 8px; margin: 20px 0; border-left: 4px solid #2C3E50;">
+                <p style="font-style: italic; font-size: 1.2em;">"${cientifico.frase_famosa || 'La ciencia es conocimiento'}"</p>
+            </div>
+            
+            <p><strong>Inspiración:</strong> ${cientifico.dato_inspirador || 'Sin dato disponible'}</p>
+            
+            <hr style="border: 1px solid #E0E0E0; margin: 30px 0;">
+            <p style="text-align: center; color: #888; font-size: 0.9em;">
+                Generado desde Ciencia Curiosa - ${new Date().toLocaleDateString()}
+            </p>
+        </div>
+    `;
+
+    const ventana = window.open('', '_blank', 'width=800,height=600');
+    ventana.document.write(`
+        <html>
+            <head><title>${cientifico.nombre} - Biografía</title></head>
+            <body>${contenidoPDF}</body>
+        </html>
+    `);
+    ventana.document.close();
+    
+    setTimeout(() => {
+        ventana.print();
+        mostrarNotificacion(`✅ PDF de ${nombre} generado`, 'success');
+    }, 500);
+}
+
+// =============================================
+// COPIAR ENLACE
 // =============================================
 function copiarEnlace(nombre) {
     const url = window.location.href + '?buscar=' + encodeURIComponent(nombre);
     if (navigator.clipboard) {
         navigator.clipboard.writeText(url).then(() => {
-            alert('Enlace copiado al portapapeles: ' + url);
+            mostrarNotificacion(`✅ Enlace copiado: ${nombre}`, 'success');
         }).catch(() => {
             prompt('Copia este enlace:', url);
         });
@@ -242,11 +351,14 @@ function aplicarFiltros() {
         }
     });
 
+    paginaActual = 1;
     mostrarCientificos(resultado);
 }
 
 function filtrarPorCategoria(categoria) {
     filtroActual = categoria;
+    const select = document.getElementById('filtroCategoria');
+    if (select) select.value = categoria;
     aplicarFiltros();
 }
 
@@ -282,10 +394,12 @@ function buscarCientifico(nombre) {
     filtroActual = 'Todos';
     textoBusqueda = nombre;
     const buscador = document.getElementById('buscador');
+    const select = document.getElementById('filtroCategoria');
     if (buscador) {
         buscador.value = nombre;
         buscador.dispatchEvent(new Event('input'));
     }
+    if (select) select.value = 'Todos';
     aplicarFiltros();
 }
 
@@ -328,9 +442,11 @@ function toggleModoOscuro() {
     if (body.classList.contains('modo-oscuro')) {
         btn.textContent = '☀️';
         localStorage.setItem('modoCienciaCuriosa', 'oscuro');
+        mostrarNotificacion('🌙 Modo oscuro activado');
     } else {
         btn.textContent = '🌙';
         localStorage.setItem('modoCienciaCuriosa', 'claro');
+        mostrarNotificacion('☀️ Modo claro activado');
     }
 }
 
@@ -338,11 +454,11 @@ function toggleModoOscuro() {
 // EVENTOS
 // =============================================
 document.addEventListener('DOMContentLoaded', function() {
+
     // ====== MODO OSCURO ======
     const btnModo = document.getElementById('btnModoOscuro');
     if (btnModo) {
         btnModo.addEventListener('click', toggleModoOscuro);
-        // Cargar preferencia guardada
         const modoGuardado = localStorage.getItem('modoCienciaCuriosa');
         if (modoGuardado === 'oscuro') {
             document.body.classList.add('modo-oscuro');
@@ -371,10 +487,10 @@ document.addEventListener('DOMContentLoaded', function() {
     if (buscador) {
         buscador.addEventListener('input', function() {
             textoBusqueda = this.value;
+            paginaActual = 1;
             aplicarFiltros();
         });
 
-        // Si hay parámetro buscar en la URL
         const params = new URLSearchParams(window.location.search);
         const buscarParam = params.get('buscar');
         if (buscarParam) {
@@ -384,55 +500,25 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // ====== CATEGORÍAS ======
-    const itemsCategoria = document.querySelectorAll('.categoria-item');
-    itemsCategoria.forEach(item => {
-        item.addEventListener('click', function() {
-            const categoria = this.getAttribute('data-categoria');
-            filtrarPorCategoria(categoria);
+    // ====== FILTRO POR CATEGORÍA (SELECT) ======
+    const selectCategoria = document.getElementById('filtroCategoria');
+    if (selectCategoria) {
+        selectCategoria.addEventListener('change', function() {
+            filtroActual = this.value;
+            paginaActual = 1;
+            aplicarFiltros();
             
-            itemsCategoria.forEach(i => {
+            // Resaltar categoría correspondiente
+            document.querySelectorAll('.categoria-item').forEach(i => {
                 i.style.borderColor = '#E0E0E0';
                 i.style.borderWidth = '2px';
             });
-            this.style.borderColor = '#2C3E50';
-            this.style.borderWidth = '2px';
-        });
-    });
-
-    // ====== "TODOS" EN EL MENÚ ======
-    const menu = document.querySelector('.menu');
-    const linkTodos = document.createElement('a');
-    linkTodos.href = '#cientificos';
-    linkTodos.textContent = 'Todos';
-    linkTodos.className = 'activo';
-    linkTodos.addEventListener('click', function(e) {
-        e.preventDefault();
-        filtroActual = 'Todos';
-        textoBusqueda = '';
-        const buscador = document.getElementById('buscador');
-        if (buscador) buscador.value = '';
-        aplicarFiltros();
-        
-        document.querySelectorAll('.categoria-item').forEach(i => {
-            i.style.borderColor = '#E0E0E0';
-            i.style.borderWidth = '2px';
-        });
-    });
-    menu.appendChild(linkTodos);
-
-    // ====== ORDENAR ======
-    const btnOrdenar = document.getElementById('btnOrdenar');
-    if (btnOrdenar) {
-        btnOrdenar.addEventListener('click', function() {
-            if (ordenActual === 'asc') {
-                ordenActual = 'desc';
-                this.textContent = 'Z-A';
-            } else {
-                ordenActual = 'asc';
-                this.textContent = 'A-Z';
+            const item = document.querySelector(`.categoria-item[data-categoria="${this.value}"]`);
+            if (item && this.value !== 'Todos') {
+                item.style.borderColor = '#2C3E50';
+                item.style.borderWidth = '2px';
             }
-            aplicarFiltros();
         });
     }
-});
+
+    // ======
