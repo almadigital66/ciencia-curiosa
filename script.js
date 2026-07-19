@@ -65,6 +65,10 @@ function mostrarCientificos(cientificos) {
     const contenedor = document.getElementById('contenedor-cientificos');
     contenedor.innerHTML = '';
 
+    // Actualizar contadores de categorías
+    const conteo = contarPorCategoria(todosLosCientificos);
+    actualizarContadoresCategorias(conteo);
+
     if (cientificos.length === 0) {
         contenedor.innerHTML = `
             <div style="background:#F5F5F5;padding:30px;border-radius:8px;text-align:center;border:1px solid #E0E0E0;">
