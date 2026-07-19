@@ -2,7 +2,11 @@ let todosLosCientificos = [];
 let filtroActual = 'Todos';
 let textoBusqueda = '';
 let ordenActual = 'asc';
+let likes = {};
 
+// =============================================
+// CARGAR DATOS
+// =============================================
 fetch('datos.json')
     .then(respuesta => {
         if (!respuesta.ok) throw new Error('Error al cargar datos.json');
@@ -13,6 +17,8 @@ fetch('datos.json')
         mostrarCientificos(cientificos);
         actualizarContador(cientificos.length);
         mostrarCientificoDelDia();
+        mostrarEstadisticas();
+        cargarLikes();
     })
     .catch(error => {
         document.getElementById('contenedor-cientificos').innerHTML = `
@@ -23,6 +29,34 @@ fetch('datos.json')
         `;
     });
 
+// =============================================
+// LIKES (localStorage)
+// =============================================
+function cargarLikes() {
+    const guardado = localStorage.getItem('likesCienciaCuriosa');
+    if (guardado) {
+        likes = JSON.parse(guardado);
+    }
+}
+
+function guardarLikes() {
+    localStorage.setItem('likesCienciaCuriosa', JSON.stringify(likes));
+}
+
+function toggleLike(nombre) {
+    if (likes[nombre]) {
+        delete likes[nombre];
+    } else {
+        likes[nombre] = true;
+    }
+    guardarLikes();
+    // Recargar la vista actual
+    aplicarFiltros();
+}
+
+// =============================================
+// CONTAR POR CATEGORÍA
+// =============================================
 function contarPorCategoria(cientificos) {
     const conteo = {};
     cientificos.forEach(c => {
@@ -48,6 +82,9 @@ function actualizarContadoresCategorias(conteo) {
     });
 }
 
+// =============================================
+// MOSTRAR CIENTÍFICOS
+// =============================================
 function mostrarCientificos(cientificos) {
     const contenedor = document.getElementById('contenedor-cientificos');
     contenedor.innerHTML = '';
@@ -69,6 +106,13 @@ function mostrarCientificos(cientificos) {
         const tarjeta = document.createElement('div');
         tarjeta.className = 'cientifico';
 
+        // Obtener científicos relacionados (misma categoría, excluyéndose a sí mismo)
+        const relacionados = todosLosCientificos
+            .filter(c => c.categoria === cientifico.categoria && c.nombre !== cientifico.nombre)
+            .slice(0, 3);
+
+        const likeActivo = likes[cientifico.nombre] || false;
+
         tarjeta.innerHTML = `
             <div class="imagen-container">
                 <img src="${cientifico.imagen || 'https://via.placeholder.com/80'}" alt="${cientifico.nombre}" loading="lazy" onerror="this.src='https://via.placeholder.com/80'">
@@ -77,6 +121,13 @@ function mostrarCientificos(cientificos) {
                 <h2>${cientifico.nombre}</h2>
                 <span class="categoria">${cientifico.categoria || 'Científico'}</span>
                 <div class="aporte">${cientifico.aporte}</div>
+                
+                <div style="display: flex; gap: 10px; flex-wrap: wrap; margin: 8px 0;">
+                    <button class="btn-like ${likeActivo ? 'activo' : ''}" data-nombre="${cientifico.nombre}">
+                        ${likeActivo ? '❤️' : '🤍'} <span class="like-text">${likeActivo ? 'Me gusta' : 'Me gusta'}</span>
+                    </button>
+                </div>
+
                 <div class="detalles">
                     <h3>Curiosidades</h3>
                     ${cientifico.curiosidades.map(c => `<div class="curiosidad">${c}</div>`).join('')}
@@ -84,14 +135,46 @@ function mostrarCientificos(cientificos) {
                     <div class="inspiracion">
                         <strong>Inspiración:</strong> ${cientifico.dato_inspirador || 'Sin dato disponible'}
                     </div>
+                    
+                    ${relacionados.length > 0 ? `
+                        <div class="relacionados">
+                            <strong>Otros científicos de ${cientifico.categoria}:</strong><br>
+                            ${relacionados.map(r => `<a onclick="buscarCientifico('${r.nombre}')">${r.nombre}</a>`).join('')}
+                        </div>
+                    ` : ''}
+                    
+                    <div class="compartir-botones">
+                        <a href="https://wa.me/?text=🔬%20${encodeURIComponent(cientifico.nombre)}%20-%20${encodeURIComponent(cientifico.aporte)}%0A%0A📖%20${encodeURIComponent(cientifico.curiosidades.join(' '))}%0A%0A📌%20${encodeURIComponent(cientifico.frase_famosa || '')}%0A%0A🌐%20${encodeURIComponent(window.location.href)}" target="_blank" class="btn-compartir btn-whatsapp">💬 WhatsApp</a>
+                        <a href="https://twitter.com/intent/tweet?text=${encodeURIComponent('🔬 ' + cientifico.nombre + ' - ' + cientifico.aporte + '\n\n' + cientifico.frase_famosa + '\n\n')}&url=${encodeURIComponent(window.location.href)}" target="_blank" class="btn-compartir btn-twitter">🐦 X</a>
+                        <a href="https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}&quote=${encodeURIComponent('🔬 ' + cientifico.nombre + ' - ' + cientifico.aporte)}" target="_blank" class="btn-compartir btn-facebook">📘 Facebook</a>
+                        <button class="btn-compartir btn-copiar" onclick="copiarEnlace('${cientifico.nombre}')">🔗 Copiar</button>
+                    </div>
                 </div>
             </div>
         `;
 
-        tarjeta.addEventListener('click', function() {
+        // Evento para mostrar/ocultar detalles
+        tarjeta.addEventListener('click', function(e) {
+            // Si el clic fue en un botón o enlace, no togglear
+            if (e.target.closest('.btn-like') || e.target.closest('.btn-compartir') || e.target.closest('.ver-mas') || e.target.closest('.relacionados a')) {
+                return;
+            }
             const detalles = this.querySelector('.detalles');
             detalles.classList.toggle('visible');
         });
+
+        // Evento para el botón like
+        const btnLike = tarjeta.querySelector('.btn-like');
+        if (btnLike) {
+            btnLike.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const nombre = this.getAttribute('data-nombre');
+                toggleLike(nombre);
+                const likeActivo = likes[nombre] || false;
+                this.classList.toggle('activo');
+                this.innerHTML = `${likeActivo ? '❤️' : '🤍'} <span class="like-text">${likeActivo ? 'Me gusta' : 'Me gusta'}</span>`;
+            });
+        }
 
         contenedor.appendChild(tarjeta);
     });
@@ -99,6 +182,25 @@ function mostrarCientificos(cientificos) {
     actualizarContador(cientificos.length);
 }
 
+// =============================================
+// COMPARTIR - COPIAR ENLACE
+// =============================================
+function copiarEnlace(nombre) {
+    const url = window.location.href + '?buscar=' + encodeURIComponent(nombre);
+    if (navigator.clipboard) {
+        navigator.clipboard.writeText(url).then(() => {
+            alert('Enlace copiado al portapapeles: ' + url);
+        }).catch(() => {
+            prompt('Copia este enlace:', url);
+        });
+    } else {
+        prompt('Copia este enlace:', url);
+    }
+}
+
+// =============================================
+// ACTUALIZAR CONTADOR
+// =============================================
 function actualizarContador(cantidad) {
     const contador = document.getElementById('contador-resultados');
     if (contador) {
@@ -115,6 +217,9 @@ function actualizarContador(cantidad) {
     }
 }
 
+// =============================================
+// APLICAR FILTROS
+// =============================================
 function aplicarFiltros() {
     let resultado = todosLosCientificos;
 
@@ -145,6 +250,9 @@ function filtrarPorCategoria(categoria) {
     aplicarFiltros();
 }
 
+// =============================================
+// CIENTÍFICO DEL DÍA
+// =============================================
 function mostrarCientificoDelDia() {
     const contenedor = document.getElementById('contenedor-cientifico-dia');
     if (!contenedor) return;
@@ -181,7 +289,68 @@ function buscarCientifico(nombre) {
     aplicarFiltros();
 }
 
+// =============================================
+// ESTADÍSTICAS
+// =============================================
+function mostrarEstadisticas() {
+    const contenedor = document.getElementById('contenedor-estadisticas');
+    if (!contenedor) return;
+
+    const conteo = contarPorCategoria(todosLosCientificos);
+    const total = todosLosCientificos.length;
+
+    let html = `
+        <div class="estadistica-item">
+            <div class="numero">${total}</div>
+            <div class="etiqueta">Total</div>
+        </div>
+    `;
+
+    Object.keys(conteo).sort().forEach(categoria => {
+        html += `
+            <div class="estadistica-item">
+                <div class="numero">${conteo[categoria]}</div>
+                <div class="etiqueta">${categoria}</div>
+            </div>
+        `;
+    });
+
+    contenedor.innerHTML = html;
+}
+
+// =============================================
+// MODO OSCURO
+// =============================================
+function toggleModoOscuro() {
+    const body = document.body;
+    const btn = document.getElementById('btnModoOscuro');
+    body.classList.toggle('modo-oscuro');
+    if (body.classList.contains('modo-oscuro')) {
+        btn.textContent = '☀️';
+        localStorage.setItem('modoCienciaCuriosa', 'oscuro');
+    } else {
+        btn.textContent = '🌙';
+        localStorage.setItem('modoCienciaCuriosa', 'claro');
+    }
+}
+
+// =============================================
+// EVENTOS
+// =============================================
 document.addEventListener('DOMContentLoaded', function() {
+    // ====== MODO OSCURO ======
+    const btnModo = document.getElementById('btnModoOscuro');
+    if (btnModo) {
+        btnModo.addEventListener('click', toggleModoOscuro);
+        // Cargar preferencia guardada
+        const modoGuardado = localStorage.getItem('modoCienciaCuriosa');
+        if (modoGuardado === 'oscuro') {
+            document.body.classList.add('modo-oscuro');
+            btnModo.textContent = '☀️';
+        }
+    }
+
+    // ====== BOTÓN VOLVER ARRIBA ======
     const btnVolver = document.getElementById('btnVolverArriba');
     if (btnVolver) {
         window.addEventListener('scroll', function() {
@@ -197,14 +366,25 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    // ====== BUSCADOR ======
     const buscador = document.getElementById('buscador');
     if (buscador) {
         buscador.addEventListener('input', function() {
             textoBusqueda = this.value;
             aplicarFiltros();
         });
+
+        // Si hay parámetro buscar en la URL
+        const params = new URLSearchParams(window.location.search);
+        const buscarParam = params.get('buscar');
+        if (buscarParam) {
+            buscador.value = buscarParam;
+            textoBusqueda = buscarParam;
+            aplicarFiltros();
+        }
     }
 
+    // ====== CATEGORÍAS ======
     const itemsCategoria = document.querySelectorAll('.categoria-item');
     itemsCategoria.forEach(item => {
         item.addEventListener('click', function() {
@@ -220,6 +400,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
+    // ====== "TODOS" EN EL MENÚ ======
     const menu = document.querySelector('.menu');
     const linkTodos = document.createElement('a');
     linkTodos.href = '#cientificos';
@@ -240,6 +421,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     menu.appendChild(linkTodos);
 
+    // ====== ORDENAR ======
     const btnOrdenar = document.getElementById('btnOrdenar');
     if (btnOrdenar) {
         btnOrdenar.addEventListener('click', function() {
