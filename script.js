@@ -521,4 +521,70 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // ======
+    // ====== CATEGORÍAS (botones) ======
+    const itemsCategoria = document.querySelectorAll('.categoria-item');
+    itemsCategoria.forEach(item => {
+        item.addEventListener('click', function() {
+            const categoria = this.getAttribute('data-categoria');
+            filtrarPorCategoria(categoria);
+            
+            itemsCategoria.forEach(i => {
+                i.style.borderColor = '#E0E0E0';
+                i.style.borderWidth = '2px';
+            });
+            this.style.borderColor = '#2C3E50';
+            this.style.borderWidth = '2px';
+        });
+    });
+
+    // ====== "TODOS" EN EL MENÚ ======
+    const menu = document.querySelector('.menu');
+    const linkTodos = document.createElement('a');
+    linkTodos.href = '#cientificos';
+    linkTodos.textContent = 'Todos';
+    linkTodos.className = 'activo';
+    linkTodos.addEventListener('click', function(e) {
+        e.preventDefault();
+        filtroActual = 'Todos';
+        textoBusqueda = '';
+        paginaActual = 1;
+        const buscador = document.getElementById('buscador');
+        const select = document.getElementById('filtroCategoria');
+        if (buscador) buscador.value = '';
+        if (select) select.value = 'Todos';
+        aplicarFiltros();
+        
+        document.querySelectorAll('.categoria-item').forEach(i => {
+            i.style.borderColor = '#E0E0E0';
+            i.style.borderWidth = '2px';
+        });
+    });
+    menu.appendChild(linkTodos);
+
+    // ====== ORDENAR ======
+    const btnOrdenar = document.getElementById('btnOrdenar');
+    if (btnOrdenar) {
+        btnOrdenar.addEventListener('click', function() {
+            if (ordenActual === 'asc') {
+                ordenActual = 'desc';
+                this.textContent = 'Z-A';
+                mostrarNotificacion('⬇️ Ordenado Z-A');
+            } else {
+                ordenActual = 'asc';
+                this.textContent = 'A-Z';
+                mostrarNotificacion('⬆️ Ordenado A-Z');
+            }
+            paginaActual = 1;
+            aplicarFiltros();
+        });
+    }
+
+    // ====== CARGAR MÁS ======
+    const btnCargarMas = document.getElementById('btnCargarMas');
+    if (btnCargarMas) {
+        btnCargarMas.addEventListener('click', function() {
+            paginaActual++;
+            aplicarFiltros();
+        });
+    }
+});
