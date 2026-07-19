@@ -158,16 +158,63 @@ body.modo-oscuro .buscador-container input::placeholder {
     color: #888888;
 }
 
+body.modo-oscuro .buscador-container select {
+    background: #2A2A4A;
+    color: #E8E8E8;
+    border-color: #3A3A5A;
+}
+
 body.modo-oscuro footer {
     border-color: #3A3A5A;
     color: #888888;
 }
 
+body.modo-oscuro .notificacion {
+    background: #2A2A4A;
+    color: #E8E8E8;
+    border-color: #4A4A6A;
+}
+
+body.modo-oscuro .btn-cargar-mas {
+    background: #2A2A4A;
+    color: #E8E8E8;
+    border-color: #4A4A6A;
+}
+
+body.modo-oscuro .btn-cargar-mas:hover {
+    background: #3A3A5A;
+}
+
+body.modo-oscuro .relacionados {
+    background: #3A3A5A;
+}
+
+body.modo-oscuro .relacionados a {
+    background: #4A4A6A;
+    color: #E8E8E8;
+}
+
+body.modo-oscuro .btn-like {
+    border-color: #3A3A5A;
+}
+
+body.modo-oscuro .btn-like.activo {
+    border-color: #FF6B6B;
+}
+
+/* ====== HEADER ====== */
 header {
-    text-align: center;
     padding: 30px 0 20px 0;
     border-bottom: 2px solid #E0E0E0;
     margin-bottom: 15px;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
 }
 
 header h1 {
@@ -184,6 +231,12 @@ header p {
     color: #666666;
     font-style: italic;
     transition: color 0.3s ease;
+}
+
+.header-actions {
+    display: flex;
+    gap: 15px;
+    align-items: center;
 }
 
 .btn-modo {
@@ -208,6 +261,7 @@ body.modo-oscuro .btn-modo {
     border-color: #3A3A5A;
 }
 
+/* ====== MENÚ ====== */
 .menu {
     display: flex;
     justify-content: center;
@@ -238,6 +292,7 @@ body.modo-oscuro .btn-modo {
     border-bottom-color: #2C3E50;
 }
 
+/* ====== SECCIONES ====== */
 #inicio {
     background: #F5F5F5;
     padding: 35px 25px;
@@ -290,6 +345,7 @@ body.modo-oscuro .btn-modo {
     background: #1A2A3A;
 }
 
+/* ====== CIENTÍFICO DEL DÍA ====== */
 #cientifico-dia {
     margin: 40px 0 30px 0;
 }
@@ -365,6 +421,7 @@ body.modo-oscuro .btn-modo {
     border-bottom-color: #1A2A3A;
 }
 
+/* ====== CATEGORÍAS ====== */
 #categorias {
     margin-bottom: 40px;
 }
@@ -411,6 +468,7 @@ body.modo-oscuro .btn-modo {
     font-size: 0.85em;
 }
 
+/* ====== CIENTÍFICOS ====== */
 #cientificos h2 {
     font-size: 1.6em;
     color: #2C3E50;
@@ -435,9 +493,6 @@ body.modo-oscuro .btn-modo {
     transition: all 0.2s ease;
     border: 1px solid #E0E0E0;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-    display: flex;
-    gap: 20px;
-    align-items: flex-start;
     position: relative;
 }
 
@@ -445,22 +500,6 @@ body.modo-oscuro .btn-modo {
     background: #EEEEEE;
     border-color: #CCCCCC;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
-}
-
-.cientifico .imagen-container {
-    flex-shrink: 0;
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    overflow: hidden;
-    border: 2px solid #2C3E50;
-    background: #FFFFFF;
-}
-
-.cientifico .imagen-container img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
 }
 
 .cientifico .contenido {
@@ -552,6 +591,228 @@ body.modo-oscuro .btn-modo {
     font-weight: 600;
 }
 
+/* ====== BOTONES DE ACCIÓN ====== */
+.acciones {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin: 8px 0;
+}
+
+.btn-like {
+    background: none;
+    border: 2px solid #E0E0E0;
+    border-radius: 20px;
+    padding: 4px 14px;
+    font-size: 0.85em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Georgia', 'Times New Roman', serif;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.btn-like:hover {
+    border-color: #FF6B6B;
+}
+
+.btn-like.activo {
+    border-color: #FF6B6B;
+    background: #FF6B6B22;
+}
+
+.btn-pdf {
+    background: none;
+    border: 2px solid #E0E0E0;
+    border-radius: 20px;
+    padding: 4px 14px;
+    font-size: 0.85em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Georgia', 'Times New Roman', serif;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.btn-pdf:hover {
+    border-color: #2C3E50;
+    background: #2C3E5022;
+}
+
+/* ====== COMPARTIR ====== */
+.compartir-botones {
+    display: flex;
+    gap: 8px;
+    margin-top: 12px;
+    flex-wrap: wrap;
+}
+
+.btn-compartir {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 20px;
+    font-size: 0.75em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    color: #FFFFFF;
+    gap: 4px;
+    font-family: 'Georgia', 'Times New Roman', serif;
+}
+
+.btn-compartir:hover {
+    transform: scale(1.05);
+}
+
+.btn-whatsapp { background: #25D366; }
+.btn-whatsapp:hover { background: #128C7E; }
+
+.btn-twitter { background: #1DA1F2; }
+.btn-twitter:hover { background: #0A7FC4; }
+
+.btn-facebook { background: #4267B2; }
+.btn-facebook:hover { background: #365899; }
+
+.btn-copiar { background: #6C757D; }
+.btn-copiar:hover { background: #5A6268; }
+
+/* ====== RELACIONADOS ====== */
+.relacionados {
+    margin-top: 15px;
+    padding: 12px 16px;
+    background: #FFFFFF;
+    border-radius: 8px;
+    border-left: 3px solid #2C3E50;
+}
+
+.relacionados strong {
+    color: #2C3E50;
+}
+
+.relacionados a {
+    display: inline-block;
+    color: #2C3E50;
+    text-decoration: none;
+    font-weight: 600;
+    margin: 0 8px 0 0;
+    padding: 2px 8px;
+    border-radius: 12px;
+    background: #F0F0F0;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.relacionados a:hover {
+    background: #E0E0E0;
+    transform: scale(1.05);
+}
+
+/* ====== PAGINACIÓN ====== */
+.btn-cargar-mas {
+    background: #2C3E50;
+    color: #FFFFFF;
+    border: none;
+    padding: 12px 35px;
+    border-radius: 30px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Georgia', 'Times New Roman', serif;
+}
+
+.btn-cargar-mas:hover {
+    background: #1A2A3A;
+    transform: scale(1.02);
+}
+
+/* ====== BUSCADOR ====== */
+.buscador-container {
+    text-align: center;
+    margin: 15px 0 25px 0;
+}
+
+.buscador-fila {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.buscador-container input {
+    flex: 1;
+    min-width: 200px;
+    padding: 12px 20px;
+    font-size: 1em;
+    border: 2px solid #E0E0E0;
+    border-radius: 30px;
+    outline: none;
+    transition: all 0.3s ease;
+    font-family: 'Georgia', 'Times New Roman', serif;
+    background: #FFFFFF;
+    color: #1A1A1A;
+}
+
+.buscador-container input:focus {
+    border-color: #2C3E50;
+    box-shadow: 0 0 10px rgba(44, 62, 80, 0.1);
+}
+
+.buscador-container input::placeholder {
+    color: #AAAAAA;
+    font-style: italic;
+}
+
+.filtro-categoria {
+    padding: 12px 20px;
+    font-size: 1em;
+    border: 2px solid #E0E0E0;
+    border-radius: 30px;
+    outline: none;
+    font-family: 'Georgia', 'Times New Roman', serif;
+    background: #FFFFFF;
+    color: #1A1A1A;
+    min-width: 180px;
+    cursor: pointer;
+}
+
+.filtro-categoria:focus {
+    border-color: #2C3E50;
+}
+
+.btn-ordenar {
+    background: #2C3E50;
+    color: #FFFFFF;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 30px;
+    font-size: 0.95em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Georgia', 'Times New Roman', serif;
+    min-width: 60px;
+}
+
+.btn-ordenar:hover {
+    background: #1A2A3A;
+    transform: scale(1.02);
+}
+
+#contador-resultados {
+    display: block;
+    margin-top: 8px;
+    font-size: 0.9em;
+    color: #888888;
+}
+
 /* ====== ESTADÍSTICAS ====== */
 #estadisticas {
     margin: 40px 0;
@@ -594,117 +855,30 @@ body.modo-oscuro .btn-modo {
     margin-top: 5px;
 }
 
-/* ====== BOTONES DE COMPARTIR ====== */
-.compartir-botones {
-    display: flex;
-    gap: 8px;
-    margin-top: 12px;
-    flex-wrap: wrap;
-}
-
-.btn-compartir {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 6px 12px;
-    border: none;
-    border-radius: 20px;
-    font-size: 0.75em;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    text-decoration: none;
+/* ====== NOTIFICACIONES ====== */
+.notificacion {
+    position: fixed;
+    bottom: 100px;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    background: #2C3E50;
     color: #FFFFFF;
-    gap: 4px;
-    font-family: 'Georgia', 'Times New Roman', serif;
-}
-
-.btn-compartir:hover {
-    transform: scale(1.05);
-}
-
-.btn-whatsapp { background: #25D366; }
-.btn-whatsapp:hover { background: #128C7E; }
-
-.btn-twitter { background: #1DA1F2; }
-.btn-twitter:hover { background: #0A7FC4; }
-
-.btn-facebook { background: #4267B2; }
-.btn-facebook:hover { background: #365899; }
-
-.btn-copiar { background: #6C757D; }
-.btn-copiar:hover { background: #5A6268; }
-
-/* ====== BOTÓN LIKE ====== */
-.btn-like {
-    background: none;
-    border: 2px solid #E0E0E0;
-    border-radius: 20px;
-    padding: 4px 14px;
-    font-size: 0.85em;
-    cursor: pointer;
+    padding: 12px 25px;
+    border-radius: 30px;
+    font-size: 0.95em;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    visibility: hidden;
     transition: all 0.3s ease;
-    font-family: 'Georgia', 'Times New Roman', serif;
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
+    z-index: 2000;
+    max-width: 90%;
+    text-align: center;
 }
 
-.btn-like:hover {
-    border-color: #FF6B6B;
-}
-
-.btn-like.activo {
-    border-color: #FF6B6B;
-    background: #FF6B6B22;
-}
-
-body.modo-oscuro .btn-like {
-    border-color: #3A3A5A;
-}
-
-body.modo-oscuro .btn-like.activo {
-    border-color: #FF6B6B;
-}
-
-/* ====== CIENTÍFICOS RELACIONADOS ====== */
-.relacionados {
-    margin-top: 15px;
-    padding: 12px 16px;
-    background: #FFFFFF;
-    border-radius: 8px;
-    border-left: 3px solid #2C3E50;
-}
-
-.relacionados strong {
-    color: #2C3E50;
-}
-
-.relacionados a {
-    display: inline-block;
-    color: #2C3E50;
-    text-decoration: none;
-    font-weight: 600;
-    margin: 0 8px 0 0;
-    padding: 2px 8px;
-    border-radius: 12px;
-    background: #F0F0F0;
-    transition: all 0.3s ease;
-    cursor: pointer;
-}
-
-.relacionados a:hover {
-    background: #E0E0E0;
-    transform: scale(1.05);
-}
-
-body.modo-oscuro .relacionados {
-    background: #3A3A5A;
-}
-
-body.modo-oscuro .relacionados a {
-    background: #4A4A6A;
-    color: #E8E8E8;
+.notificacion.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
 }
 
 /* ====== BOTÓN VOLVER ARRIBA ====== */
@@ -738,70 +912,7 @@ body.modo-oscuro .relacionados a {
     visibility: visible;
 }
 
-.buscador-container {
-    text-align: center;
-    margin: 15px 0 25px 0;
-}
-
-.buscador-fila {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    flex-wrap: wrap;
-    max-width: 600px;
-    margin: 0 auto;
-}
-
-.buscador-container input {
-    flex: 1;
-    min-width: 200px;
-    padding: 12px 20px;
-    font-size: 1em;
-    border: 2px solid #E0E0E0;
-    border-radius: 30px;
-    outline: none;
-    transition: all 0.3s ease;
-    font-family: 'Georgia', 'Times New Roman', serif;
-    background: #FFFFFF;
-    color: #1A1A1A;
-}
-
-.buscador-container input:focus {
-    border-color: #2C3E50;
-    box-shadow: 0 0 10px rgba(44, 62, 80, 0.1);
-}
-
-.buscador-container input::placeholder {
-    color: #AAAAAA;
-    font-style: italic;
-}
-
-.btn-ordenar {
-    background: #2C3E50;
-    color: #FFFFFF;
-    border: none;
-    padding: 12px 20px;
-    border-radius: 30px;
-    font-size: 0.95em;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-family: 'Georgia', 'Times New Roman', serif;
-    min-width: 60px;
-}
-
-.btn-ordenar:hover {
-    background: #1A2A3A;
-    transform: scale(1.02);
-}
-
-#contador-resultados {
-    display: block;
-    margin-top: 8px;
-    font-size: 0.9em;
-    color: #888888;
-}
-
+/* ====== FOOTER ====== */
 footer {
     text-align: center;
     padding: 30px 0 20px 0;
@@ -818,6 +929,7 @@ footer .footer-leyenda {
     font-style: italic;
 }
 
+/* ====== ANIMACIONES ====== */
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -831,19 +943,52 @@ footer .footer-leyenda {
 
 /* ====== RESPONSIVE ====== */
 @media (max-width: 600px) {
-    .cientifico {
+    body {
+        padding: 10px;
+    }
+
+    .header-container {
         flex-direction: column;
-        align-items: center;
         text-align: center;
     }
 
-    .cientifico .imagen-container {
-        width: 100px;
-        height: 100px;
+    header h1 {
+        font-size: 1.8em;
     }
 
-    .compartir-botones {
-        justify-content: center;
+    .menu {
+        gap: 10px;
+        font-size: 0.9em;
+    }
+
+    .buscador-fila {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .buscador-container input {
+        min-width: 100%;
+    }
+
+    .filtro-categoria {
+        min-width: 100%;
+    }
+
+    .grid-categorias {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+
+    #contenedor-cientificos {
+        grid-template-columns: 1fr;
+    }
+
+    .cientifico {
+        padding: 15px;
+    }
+
+    .cientifico h2 {
+        font-size: 1.3em;
     }
 
     #btnVolverArriba {
@@ -854,10 +999,35 @@ footer .footer-leyenda {
         right: 20px;
     }
 
-    .btn-modo {
-        width: 40px;
-        height: 40px;
-        font-size: 1.2em;
+    .estadisticas-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+    }
+
+    .estadistica-item {
+        padding: 15px;
+    }
+
+    .estadistica-item .numero {
+        font-size: 1.8em;
+    }
+
+    .compartir-botones {
+        justify-content: center;
+    }
+
+    .notificacion {
+        bottom: 80px;
+        font-size: 0.85em;
+        padding: 10px 18px;
+    }
+
+    .cientifico-destacado {
+        padding: 20px;
+    }
+
+    .cientifico-destacado h3 {
+        font-size: 1.5em;
     }
 }
 
@@ -867,19 +1037,19 @@ footer .footer-leyenda {
     }
 
     header h1 {
-        font-size: 3em;
+        font-size: 2.8em;
     }
 
     header p {
-        font-size: 1.2em;
+        font-size: 1.1em;
     }
 
     .menu {
-        gap: 35px;
+        gap: 30px;
     }
 
     .menu a {
-        font-size: 1.1em;
+        font-size: 1.05em;
     }
 
     #inicio {
@@ -900,11 +1070,11 @@ footer .footer-leyenda {
 
     #contenedor-cientificos {
         grid-template-columns: 1fr 1fr;
-        gap: 30px;
+        gap: 25px;
     }
 
     .cientifico h2 {
-        font-size: 1.6em;
+        font-size: 1.5em;
     }
 
     .cientifico {
@@ -929,66 +1099,4 @@ footer .footer-leyenda {
     }
 
     .estadisticas-grid {
-        grid-template-columns: repeat(5, 1fr);
-    }
-}
-
-@media (min-width: 1024px) {
-    body {
-        padding: 40px;
-        max-width: 1200px;
-    }
-
-    header h1 {
-        font-size: 3.5em;
-    }
-
-    #contenedor-cientificos {
-        grid-template-columns: 1fr 1fr 1fr;
-        gap: 35px;
-    }
-
-    .cientifico {
-        padding: 30px 35px;
-    }
-
-    .cientifico h2 {
-        font-size: 1.7em;
-    }
-
-    .menu {
-        gap: 45px;
-    }
-
-    .menu a {
-        font-size: 1.15em;
-    }
-
-    .grid-categorias {
-        gap: 25px;
-    }
-
-    .categoria-item {
-        padding: 30px 25px;
-    }
-
-    .categoria-item h3 {
-        font-size: 1.4em;
-    }
-
-    #inicio {
-        padding: 60px 50px;
-    }
-
-    .bienvenida h2 {
-        font-size: 2.5em;
-    }
-
-    .bienvenida p {
-        font-size: 1.2em;
-    }
-
-    .bienvenida .frase-destacada {
-        font-size: 1.6em;
-    }
-}
+        grid-template-columns: rep
