@@ -4,7 +4,7 @@
 let todosLosCientificos = [];
 let filtroActual = 'Todos';
 let textoBusqueda = '';
-let ordenActual = 'asc'; // <-- NUEVO: para ordenar A-Z o Z-A
+let ordenActual = 'asc';
 
 // =============================================
 // CARGAR DATOS
@@ -18,6 +18,7 @@ fetch('datos.json')
         todosLosCientificos = cientificos;
         mostrarCientificos(cientificos);
         actualizarContador(cientificos.length);
+        mostrarCientificoDelDia();
     })
     .catch(error => {
         document.getElementById('contenedor-cientificos').innerHTML = `
@@ -142,7 +143,6 @@ function aplicarFiltros() {
         resultado = resultado.filter(c => c.nombre.toLowerCase().includes(busqueda));
     }
 
-    // ORDENAR ALFABÉTICAMENTE
     resultado = [...resultado].sort((a, b) => {
         const nombreA = a.nombre.toLowerCase();
         const nombreB = b.nombre.toLowerCase();
@@ -161,6 +161,45 @@ function aplicarFiltros() {
 // =============================================
 function filtrarPorCategoria(categoria) {
     filtroActual = categoria;
+    aplicarFiltros();
+}
+
+// =============================================
+// CIENTÍFICO DEL DÍA
+// =============================================
+function mostrarCientificoDelDia() {
+    const contenedor = document.getElementById('contenedor-cientifico-dia');
+    if (!contenedor) return;
+
+    if (todosLosCientificos.length === 0) {
+        contenedor.innerHTML = '<p style="color:#888;">Cargando científico del día...</p>';
+        return;
+    }
+
+    const hoy = new Date();
+    const diaDelAño = Math.floor((hoy - new Date(hoy.getFullYear(), 0, 0)) / (1000 * 60 * 60 * 24));
+    const indice = diaDelAño % todosLosCientificos.length;
+    const cientifico = todosLosCientificos[indice];
+
+    contenedor.innerHTML = `
+        <h3>${cientifico.nombre}</h3>
+        <span class="categoria-destacada">${cientifico.categoria || 'Científico'}</span>
+        <div class="frase-destacada">"${cientifico.frase_famosa || 'La ciencia es conocimiento'}"</div>
+        <div class="aporte-destacado">📌 ${cientifico.aporte}</div>
+        <a class="ver-mas" onclick="buscarCientifico('${cientifico.nombre}')">Ver más sobre ${cientifico.nombre}</a>
+    `;
+}
+
+function buscarCientifico(nombre) {
+    document.getElementById('cientificos').scrollIntoView({ behavior: 'smooth' });
+    
+    filtroActual = 'Todos';
+    textoBusqueda = nombre;
+    const buscador = document.getElementById('buscador');
+    if (buscador) {
+        buscador.value = nombre;
+        buscador.dispatchEvent(new Event('input'));
+    }
     aplicarFiltros();
 }
 
