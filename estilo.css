@@ -328,3 +328,25 @@ footer .footer-leyenda {
         font-size: 1.6em;
     }
 }
+
+/* ====== ESTILOS PARA FILTRO DE CATEGORÍAS ====== */
+.categoria-item {
+    transition: all 0.3s ease;
+    border: 2px solid #E0E0E0;
+}
+
+.categoria-item:hover {
+    border-color: #2C3E50;
+}
+
+.menu a {
+    cursor: pointer;
+}
+
+/* Contador de científicos */
+.contador {
+    text-align: center;
+    font-size: 0.95em;
+    color: #888888;
+    margin-bottom: 20px;
+}
