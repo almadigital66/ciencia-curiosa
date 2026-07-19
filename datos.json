@@ -4,11 +4,11 @@
     "aporte": "Teoría de la Relatividad (E = mc²)",
     "categoria": "Física",
     "curiosidades": [
-      "Sacaba la lengua en todas las fotografías, era su sello personal.",
-      "Rechazó la presidencia de Israel para dedicarse a la ciencia.",
-      "Nunca usaba calcetines, consideraba que los dedos necesitaban libertad."
+      "Sacaba la lengua en todas las fotografías.",
+      "Rechazó la presidencia de Israel.",
+      "Nunca usaba calcetines."
     ],
-    "dato_inspirador": "Fue un estudiante mediocre, pero revolucionó la física para siempre.",
+    "dato_inspirador": "Fue un estudiante mediocre, pero revolucionó la física.",
     "frase_famosa": "La imaginación es más importante que el conocimiento."
   },
   {
@@ -16,11 +16,11 @@
     "aporte": "Descubrimiento del Radio y el Polonio",
     "categoria": "Química",
     "curiosidades": [
-      "Es la única persona con dos Premios Nobel en ciencias distintas.",
-      "Sus cuadernos de laboratorio de 1890 aún son radiactivos.",
-      "Falleció por exposición a la radiación que tanto estudió."
+      "Única persona con dos Premios Nobel en ciencias distintas.",
+      "Sus cuadernos de 1890 aún son radiactivos.",
+      "Falleció por exposición a la radiación."
     ],
-    "dato_inspirador": "Fue la primera mujer en impartir clases en la Universidad de París.",
+    "dato_inspirador": "Primera mujer en dar clases en la Universidad de París.",
     "frase_famosa": "Nada en la vida debe ser temido, solo comprendido."
   },
   {
@@ -28,11 +28,11 @@
     "aporte": "Leyes de la Gravedad y el Cálculo",
     "categoria": "Física",
     "curiosidades": [
-      "Se obsesionó con la alquimia durante años.",
-      "Inventó el telescopio reflector, revolucionando la astronomía.",
+      "Se obsesionó con la alquimia.",
+      "Inventó el telescopio reflector.",
       "Nunca contrajo matrimonio."
     ],
-    "dato_inspirador": "Sus descubrimientos siguen siendo fundamentales después de tres siglos.",
+    "dato_inspirador": "Sus descubrimientos siguen vigentes después de tres siglos.",
     "frase_famosa": "Lo que sabemos es una gota; lo que ignoramos, un océano."
   },
   {
@@ -40,9 +40,9 @@
     "aporte": "Radiación Hawking y agujeros negros",
     "categoria": "Astrofísica",
     "curiosidades": [
-      "Su voz era generada por un sintetizador de voz.",
-      "Apareció en series como Los Simpson y Star Trek.",
-      "Los médicos le pronosticaron dos años de vida, pero vivió hasta los 76."
+      "Su voz era generada por un sintetizador.",
+      "Apareció en Los Simpson y Star Trek.",
+      "Los médicos le dieron 2 años de vida, vivió 76."
     ],
     "dato_inspirador": "Demostró que la mente es más poderosa que el cuerpo.",
     "frase_famosa": "Mientras haya vida, hay esperanza."
@@ -52,11 +52,71 @@
     "aporte": "Descubrimiento de la estructura del ADN",
     "categoria": "Biología",
     "curiosidades": [
-      "Su famosa 'Foto 51' fue clave para descifrar el ADN.",
+      "Su 'Foto 51' fue clave para descifrar el ADN.",
       "No fue reconocida con el Premio Nobel.",
       "Era experta en cristalografía de rayos X."
     ],
     "dato_inspirador": "Su trabajo fue fundamental para la biología moderna.",
     "frase_famosa": "La ciencia y la vida no pueden separarse."
+  },
+  {
+    "nombre": "Nikola Tesla",
+    "aporte": "Corriente Alterna (AC) y cientos de inventos",
+    "categoria": "Física",
+    "curiosidades": [
+      "Le tenía fobia a las joyas y a los aretes.",
+      "Tuvo más de 300 patentes.",
+      "Murió solo y sin dinero."
+    ],
+    "dato_inspirador": "Imaginó la electricidad inalámbrica hace 100 años.",
+    "frase_famosa": "El presente es suyo, pero el futuro es mío."
+  },
+  {
+    "nombre": "Charles Darwin",
+    "aporte": "Teoría de la Evolución (El origen de las especies)",
+    "categoria": "Biología",
+    "curiosidades": [
+      "Se comió un búho para probar que era comestible.",
+      "Era tan tímido que evitaba dar conferencias.",
+      "Su viaje en el Beagle duró 5 años."
+    ],
+    "dato_inspirador": "Cambió nuestra forma de entender el origen de la vida.",
+    "frase_famosa": "No es el más fuerte el que sobrevive, sino el que mejor se adapta."
+  },
+  {
+    "nombre": "Galileo Galilei",
+    "aporte": "Padre de la astronomía moderna",
+    "categoria": "Astrofísica",
+    "curiosidades": [
+      "Fue juzgado por la Iglesia por decir que la Tierra giraba alrededor del Sol.",
+      "Mejoró el telescopio y descubrió las lunas de Júpiter.",
+      "Escribió sus libros en italiano para que la gente común los entendiera."
+    ],
+    "dato_inspirador": "Defendió la verdad científica incluso contra la autoridad.",
+    "frase_famosa": "E pur si muove (Y sin embargo, se mueve)."
+  },
+  {
+    "nombre": "Ada Lovelace",
+    "aporte": "Primera programadora de la historia",
+    "categoria": "Matemáticas",
+    "curiosidades": [
+      "Escribió el primer algoritmo para una máquina.",
+      "Era hija del poeta Lord Byron.",
+      "Predijo que las máquinas podrían crear música y arte."
+    ],
+    "dato_inspirador": "Su visión adelantada sentó las bases de la computación.",
+    "frase_famosa": "La imaginación es la facultad de descubrir."
+  },
+  {
+    "nombre": "Louis Pasteur",
+    "aporte": "Vacunas y pasteurización",
+    "categoria": "Biología",
+    "curiosidades": [
+      "Inventó la vacuna contra la rabia.",
+      "Demostró que los microorganismos causan enfermedades.",
+      "Su nombre se usa para el proceso de pasteurización."
+    ],
+    "dato_inspirador": "Sus descubrimientos han salvado millones de vidas.",
+    "frase_famosa": "La ciencia no tiene patria, porque el conocimiento es patrimonio de la humanidad."
   }
 ]
