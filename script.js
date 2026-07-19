@@ -1,13 +1,13 @@
 // =============================================
 // VARIABLES GLOBALES
 // =============================================
-let ordenActual = 'asc'; // 'asc' o 'desc'
 let todosLosCientificos = [];
 let filtroActual = 'Todos';
 let textoBusqueda = '';
+let ordenActual = 'asc'; // <-- NUEVO: para ordenar A-Z o Z-A
 
 // =============================================
-// CARGAR DATOS DESDE JSON
+// CARGAR DATOS
 // =============================================
 fetch('datos.json')
     .then(respuesta => {
@@ -28,9 +28,8 @@ fetch('datos.json')
         `;
     });
 
-//
 // =============================================
-// FUNCIÓN: CONTAR CIENTÍFICOS POR CATEGORÍA
+// CONTAR POR CATEGORÍA
 // =============================================
 function contarPorCategoria(cientificos) {
     const conteo = {};
@@ -42,7 +41,7 @@ function contarPorCategoria(cientificos) {
 }
 
 // =============================================
-// FUNCIÓN: ACTUALIZAR CONTADORES EN CATEGORÍAS
+// ACTUALIZAR CONTADORES EN CATEGORÍAS
 // =============================================
 function actualizarContadoresCategorias(conteo) {
     const items = document.querySelectorAll('.categoria-item');
@@ -51,7 +50,6 @@ function actualizarContadoresCategorias(conteo) {
         const cantidad = conteo[categoria] || 0;
         const h3 = item.querySelector('h3');
         if (h3) {
-            // Si ya tiene número, actualizarlo
             if (h3.textContent.includes('(')) {
                 h3.textContent = h3.textContent.replace(/\(.*\)/, `(${cantidad})`);
             } else {
@@ -59,14 +57,15 @@ function actualizarContadoresCategorias(conteo) {
             }
         }
     });
-} =============================================
-// FUNCIÓN: Mostrar científicos
+}
+
+// =============================================
+// MOSTRAR CIENTÍFICOS
 // =============================================
 function mostrarCientificos(cientificos) {
     const contenedor = document.getElementById('contenedor-cientificos');
     contenedor.innerHTML = '';
 
-    // Actualizar contadores de categorías
     const conteo = contarPorCategoria(todosLosCientificos);
     actualizarContadoresCategorias(conteo);
 
@@ -110,7 +109,7 @@ function mostrarCientificos(cientificos) {
 }
 
 // =============================================
-// FUNCIÓN: Actualizar contador
+// ACTUALIZAR CONTADOR DE RESULTADOS
 // =============================================
 function actualizarContador(cantidad) {
     const contador = document.getElementById('contador-resultados');
@@ -129,25 +128,21 @@ function actualizarContador(cantidad) {
 }
 
 // =============================================
-// FUNCIÓN: FILTRAR POR CATEGORÍA + BÚSQUEDA
+// APLICAR FILTROS (CATEGORÍA + BÚSQUEDA + ORDEN)
 // =============================================
 function aplicarFiltros() {
     let resultado = todosLosCientificos;
 
-    // Filtrar por categoría
     if (filtroActual !== 'Todos') {
         resultado = resultado.filter(c => c.categoria === filtroActual);
     }
 
-    // Filtrar por búsqueda (texto)
     if (textoBusqueda.trim() !== '') {
         const busqueda = textoBusqueda.toLowerCase().trim();
-        resultado = resultado.filter(c => 
-            c.nombre.toLowerCase().includes(busqueda)
-        );
+        resultado = resultado.filter(c => c.nombre.toLowerCase().includes(busqueda));
     }
 
-    // Ordenar alfabéticamente
+    // ORDENAR ALFABÉTICAMENTE
     resultado = [...resultado].sort((a, b) => {
         const nombreA = a.nombre.toLowerCase();
         const nombreB = b.nombre.toLowerCase();
@@ -162,7 +157,7 @@ function aplicarFiltros() {
 }
 
 // =============================================
-// FUNCIÓN: FILTRAR POR CATEGORÍA (desde el menú)
+// FILTRAR POR CATEGORÍA
 // =============================================
 function filtrarPorCategoria(categoria) {
     filtroActual = categoria;
@@ -173,7 +168,24 @@ function filtrarPorCategoria(categoria) {
 // CONFIGURAR EVENTOS
 // =============================================
 document.addEventListener('DOMContentLoaded', function() {
-    // ====== EVENTO: Buscador en tiempo real ======
+
+    // ====== BOTÓN VOLVER ARRIBA ======
+    const btnVolver = document.getElementById('btnVolverArriba');
+    if (btnVolver) {
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 300) {
+                btnVolver.classList.add('visible');
+            } else {
+                btnVolver.classList.remove('visible');
+            }
+        });
+
+        btnVolver.addEventListener('click', function() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    }
+
+    // ====== BUSCADOR ======
     const buscador = document.getElementById('buscador');
     if (buscador) {
         buscador.addEventListener('input', function() {
@@ -182,14 +194,13 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // ====== EVENTO: Categorías ======
+    // ====== CATEGORÍAS ======
     const itemsCategoria = document.querySelectorAll('.categoria-item');
     itemsCategoria.forEach(item => {
         item.addEventListener('click', function() {
             const categoria = this.getAttribute('data-categoria');
             filtrarPorCategoria(categoria);
             
-            // Resaltar categoría seleccionada
             itemsCategoria.forEach(i => {
                 i.style.borderColor = '#E0E0E0';
                 i.style.borderWidth = '2px';
@@ -199,7 +210,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // ====== EVENTO: "Todos" en el menú ======
+    // ====== "TODOS" EN EL MENÚ ======
     const menu = document.querySelector('.menu');
     const linkTodos = document.createElement('a');
     linkTodos.href = '#cientificos';
@@ -213,35 +224,25 @@ document.addEventListener('DOMContentLoaded', function() {
         if (buscador) buscador.value = '';
         aplicarFiltros();
         
-        // Quitar resaltado de categorías
         document.querySelectorAll('.categoria-item').forEach(i => {
             i.style.borderColor = '#E0E0E0';
             i.style.borderWidth = '2px';
         });
     });
     menu.appendChild(linkTodos);
-});
 
-// =============================================
-// BOTÓN VOLVER ARRIBA
-// =============================================
-document.addEventListener('DOMContentLoaded', function() {
-    const btnVolver = document.getElementById('btnVolverArriba');
-
-    // Mostrar/ocultar botón según el scroll
-    window.addEventListener('scroll', function() {
-        if (window.scrollY > 300) {
-            btnVolver.classList.add('visible');
-        } else {
-            btnVolver.classList.remove('visible');
-        }
-    });
-
-    // Al hacer clic, volver arriba suavemente
-    btnVolver.addEventListener('click', function() {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
+    // ====== ORDENAR A-Z / Z-A ======
+    const btnOrdenar = document.getElementById('btnOrdenar');
+    if (btnOrdenar) {
+        btnOrdenar.addEventListener('click', function() {
+            if (ordenActual === 'asc') {
+                ordenActual = 'desc';
+                this.textContent = 'Z-A';
+            } else {
+                ordenActual = 'asc';
+                this.textContent = 'A-Z';
+            }
+            aplicarFiltros();
         });
-    });
+    }
 });
