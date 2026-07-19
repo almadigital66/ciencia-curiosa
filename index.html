@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" id="html">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,14 +9,22 @@
 <body>
 
     <header>
-        <h1>Ciencia Curiosa</h1>
-        <p>Mentes que transformaron la humanidad</p>
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+            <div>
+                <h1>Ciencia Curiosa</h1>
+                <p>Mentes que transformaron la humanidad</p>
+            </div>
+            <div style="display: flex; gap: 15px; align-items: center;">
+                <button id="btnModoOscuro" class="btn-modo" title="Cambiar tema">🌙</button>
+            </div>
+        </div>
     </header>
 
     <nav class="menu">
         <a href="#inicio" class="activo">Inicio</a>
         <a href="#categorias">Categorías</a>
         <a href="#cientificos">Científicos</a>
+        <a href="#estadisticas">Estadísticas</a>
     </nav>
 
     <section id="inicio">
@@ -72,6 +80,11 @@
         </div>
         
         <main id="contenedor-cientificos"></main>
+    </section>
+
+    <section id="estadisticas">
+        <h2>📊 Estadísticas</h2>
+        <div id="contenedor-estadisticas" class="estadisticas-grid"></div>
     </section>
 
     <footer>
