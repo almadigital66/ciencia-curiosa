@@ -469,9 +469,19 @@ footer .footer-leyenda {
     margin: 15px 0 25px 0;
 }
 
+.buscador-fila {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
 .buscador-container input {
-    width: 100%;
-    max-width: 500px;
+    flex: 1;
+    min-width: 200px;
     padding: 12px 20px;
     font-size: 1em;
     border: 2px solid #E0E0E0;
@@ -489,6 +499,24 @@ footer .footer-leyenda {
 .buscador-container input::placeholder {
     color: #AAAAAA;
     font-style: italic;
+}
+
+.btn-ordenar {
+    background: #2C3E50;
+    color: #FFFFFF;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 30px;
+    font-size: 0.95em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Georgia', 'Times New Roman', serif;
+    min-width: 60px;
+}
+
+.btn-ordenar:hover {
+    background: #1A2A3A;
+    transform: scale(1.02);
 }
 
 #contador-resultados {
