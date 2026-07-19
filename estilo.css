@@ -497,3 +497,45 @@ footer .footer-leyenda {
     font-size: 0.9em;
     color: #888888;
 }
+
+/* ====== BOTÓN VOLVER ARRIBA ====== */
+#btnVolverArriba {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: #2C3E50;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 50%;
+    width: 55px;
+    height: 55px;
+    font-size: 1.8em;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    opacity: 0;
+    visibility: hidden;
+    z-index: 1000;
+}
+
+#btnVolverArriba:hover {
+    background: #1A2A3A;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+#btnVolverArriba.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* En celulares más pequeños */
+@media (max-width: 480px) {
+    #btnVolverArriba {
+        width: 45px;
+        height: 45px;
+        font-size: 1.4em;
+        bottom: 20px;
+        right: 20px;
+    }
+}
