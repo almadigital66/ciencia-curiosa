@@ -1,14 +1,8 @@
-// =============================================
-// VARIABLES GLOBALES
-// =============================================
 let todosLosCientificos = [];
 let filtroActual = 'Todos';
 let textoBusqueda = '';
 let ordenActual = 'asc';
 
-// =============================================
-// CARGAR DATOS
-// =============================================
 fetch('datos.json')
     .then(respuesta => {
         if (!respuesta.ok) throw new Error('Error al cargar datos.json');
@@ -29,9 +23,6 @@ fetch('datos.json')
         `;
     });
 
-// =============================================
-// CONTAR POR CATEGORÍA
-// =============================================
 function contarPorCategoria(cientificos) {
     const conteo = {};
     cientificos.forEach(c => {
@@ -41,9 +32,6 @@ function contarPorCategoria(cientificos) {
     return conteo;
 }
 
-// =============================================
-// ACTUALIZAR CONTADORES EN CATEGORÍAS
-// =============================================
 function actualizarContadoresCategorias(conteo) {
     const items = document.querySelectorAll('.categoria-item');
     items.forEach(item => {
@@ -60,9 +48,6 @@ function actualizarContadoresCategorias(conteo) {
     });
 }
 
-// =============================================
-// MOSTRAR CIENTÍFICOS
-// =============================================
 function mostrarCientificos(cientificos) {
     const contenedor = document.getElementById('contenedor-cientificos');
     contenedor.innerHTML = '';
@@ -85,15 +70,20 @@ function mostrarCientificos(cientificos) {
         tarjeta.className = 'cientifico';
 
         tarjeta.innerHTML = `
-            <h2>${cientifico.nombre}</h2>
-            <span class="categoria">${cientifico.categoria || 'Científico'}</span>
-            <div class="aporte">${cientifico.aporte}</div>
-            <div class="detalles">
-                <h3>Curiosidades</h3>
-                ${cientifico.curiosidades.map(c => `<div class="curiosidad">${c}</div>`).join('')}
-                <div class="frase">"${cientifico.frase_famosa || 'La ciencia es conocimiento'}"</div>
-                <div class="inspiracion">
-                    <strong>Inspiración:</strong> ${cientifico.dato_inspirador || 'Sin dato disponible'}
+            <div class="imagen-container">
+                <img src="${cientifico.imagen || 'https://via.placeholder.com/80'}" alt="${cientifico.nombre}" loading="lazy" onerror="this.src='https://via.placeholder.com/80'">
+            </div>
+            <div class="contenido">
+                <h2>${cientifico.nombre}</h2>
+                <span class="categoria">${cientifico.categoria || 'Científico'}</span>
+                <div class="aporte">${cientifico.aporte}</div>
+                <div class="detalles">
+                    <h3>Curiosidades</h3>
+                    ${cientifico.curiosidades.map(c => `<div class="curiosidad">${c}</div>`).join('')}
+                    <div class="frase">"${cientifico.frase_famosa || 'La ciencia es conocimiento'}"</div>
+                    <div class="inspiracion">
+                        <strong>Inspiración:</strong> ${cientifico.dato_inspirador || 'Sin dato disponible'}
+                    </div>
                 </div>
             </div>
         `;
@@ -109,9 +99,6 @@ function mostrarCientificos(cientificos) {
     actualizarContador(cientificos.length);
 }
 
-// =============================================
-// ACTUALIZAR CONTADOR DE RESULTADOS
-// =============================================
 function actualizarContador(cantidad) {
     const contador = document.getElementById('contador-resultados');
     if (contador) {
@@ -128,9 +115,6 @@ function actualizarContador(cantidad) {
     }
 }
 
-// =============================================
-// APLICAR FILTROS (CATEGORÍA + BÚSQUEDA + ORDEN)
-// =============================================
 function aplicarFiltros() {
     let resultado = todosLosCientificos;
 
@@ -156,17 +140,11 @@ function aplicarFiltros() {
     mostrarCientificos(resultado);
 }
 
-// =============================================
-// FILTRAR POR CATEGORÍA
-// =============================================
 function filtrarPorCategoria(categoria) {
     filtroActual = categoria;
     aplicarFiltros();
 }
 
-// =============================================
-// CIENTÍFICO DEL DÍA
-// =============================================
 function mostrarCientificoDelDia() {
     const contenedor = document.getElementById('contenedor-cientifico-dia');
     if (!contenedor) return;
@@ -203,12 +181,7 @@ function buscarCientifico(nombre) {
     aplicarFiltros();
 }
 
-// =============================================
-// CONFIGURAR EVENTOS
-// =============================================
 document.addEventListener('DOMContentLoaded', function() {
-
-    // ====== BOTÓN VOLVER ARRIBA ======
     const btnVolver = document.getElementById('btnVolverArriba');
     if (btnVolver) {
         window.addEventListener('scroll', function() {
@@ -224,7 +197,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // ====== BUSCADOR ======
     const buscador = document.getElementById('buscador');
     if (buscador) {
         buscador.addEventListener('input', function() {
@@ -233,7 +205,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // ====== CATEGORÍAS ======
     const itemsCategoria = document.querySelectorAll('.categoria-item');
     itemsCategoria.forEach(item => {
         item.addEventListener('click', function() {
@@ -249,7 +220,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // ====== "TODOS" EN EL MENÚ ======
     const menu = document.querySelector('.menu');
     const linkTodos = document.createElement('a');
     linkTodos.href = '#cientificos';
@@ -270,7 +240,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     menu.appendChild(linkTodos);
 
-    // ====== ORDENAR A-Z / Z-A ======
     const btnOrdenar = document.getElementById('btnOrdenar');
     if (btnOrdenar) {
         btnOrdenar.addEventListener('click', function() {
