@@ -4,17 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ciencia Curiosa - Mentes Brillantes</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="estilo.css">
 </head>
 <body>
 
     <header>
-        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+        <div class="header-container">
             <div>
                 <h1>Ciencia Curiosa</h1>
                 <p>Mentes que transformaron la humanidad</p>
             </div>
-            <div style="display: flex; gap: 15px; align-items: center;">
+            <div class="header-actions">
                 <button id="btnModoOscuro" class="btn-modo" title="Cambiar tema">🌙</button>
             </div>
         </div>
@@ -74,12 +75,25 @@
         <div class="buscador-container">
             <div class="buscador-fila">
                 <input type="text" id="buscador" placeholder="Buscar científico por nombre..." />
+                <select id="filtroCategoria" class="filtro-categoria">
+                    <option value="Todos">Todas las categorías</option>
+                    <option value="Física">Física</option>
+                    <option value="Química">Química</option>
+                    <option value="Biología">Biología</option>
+                    <option value="Astrofísica">Astrofísica</option>
+                    <option value="Matemáticas">Matemáticas</option>
+                </select>
                 <button id="btnOrdenar" class="btn-ordenar">A-Z</button>
             </div>
             <span id="contador-resultados">Mostrando 20 científicos</span>
         </div>
         
         <main id="contenedor-cientificos"></main>
+        
+        <div id="paginacion-container" style="text-align: center; margin: 20px 0;">
+            <button id="btnCargarMas" class="btn-cargar-mas" style="display: none;">Cargar más científicos</button>
+            <span id="info-paginacion" style="display: block; margin-top: 10px; color: #888; font-size: 0.9em;"></span>
+        </div>
     </section>
 
     <section id="estadisticas">
@@ -93,6 +107,9 @@
     </footer>
 
     <button id="btnVolverArriba" title="Volver arriba">⬆</button>
+
+    <!-- Notificaciones -->
+    <div id="notificacion" class="notificacion"></div>
 
     <script src="script.js"></script>
 </body>
