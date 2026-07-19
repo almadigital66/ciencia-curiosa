@@ -4,59 +4,59 @@
     "aporte": "Teoría de la Relatividad (E = mc²)",
     "categoria": "Física",
     "curiosidades": [
-      "Sacaba la lengua en todas las fotos. ¡Era su sello personal!",
-      "Rechazó ser presidente de Israel, prefirió la ciencia",
-      "Nunca usaba calcetines, decía que los dedos necesitaban libertad"
+      "Sacaba la lengua en todas las fotografías, era su sello personal.",
+      "Rechazó la presidencia de Israel para dedicarse a la ciencia.",
+      "Nunca usaba calcetines, consideraba que los dedos necesitaban libertad."
     ],
-    "dato_inspirador": "Fue un mal estudiante en la escuela, pero cambió la física para siempre",
-    "frase_famosa": "La imaginación es más importante que el conocimiento"
+    "dato_inspirador": "Fue un estudiante mediocre, pero revolucionó la física para siempre.",
+    "frase_famosa": "La imaginación es más importante que el conocimiento."
   },
   {
     "nombre": "Marie Curie",
     "aporte": "Descubrimiento del Radio y el Polonio",
     "categoria": "Química",
     "curiosidades": [
-      "Única persona con 2 Premios Nobel en ciencias distintas (Física y Química)",
-      "Sus cuadernos de laboratorio de 1890 aún son radiactivos",
-      "Murió por exposición a la radiación, pero amaba la ciencia"
+      "Es la única persona con dos Premios Nobel en ciencias distintas.",
+      "Sus cuadernos de laboratorio de 1890 aún son radiactivos.",
+      "Falleció por exposición a la radiación que tanto estudió."
     ],
-    "dato_inspirador": "Primera mujer en dar clases en la Universidad de París",
-    "frase_famosa": "Nada en la vida debe ser temido, solo comprendido"
+    "dato_inspirador": "Fue la primera mujer en impartir clases en la Universidad de París.",
+    "frase_famosa": "Nada en la vida debe ser temido, solo comprendido."
   },
   {
     "nombre": "Isaac Newton",
     "aporte": "Leyes de la Gravedad y el Cálculo",
     "categoria": "Física",
     "curiosidades": [
-      "Se obsesionó con la alquimia y pasó años buscando la piedra filosofal",
-      "Creó el telescopio reflector que revolucionó la astronomía",
-      "Nunca se casó ni tuvo hijos conocidos"
+      "Se obsesionó con la alquimia durante años.",
+      "Inventó el telescopio reflector, revolucionando la astronomía.",
+      "Nunca contrajo matrimonio."
     ],
-    "dato_inspirador": "Sus descubrimientos siguen vigentes más de 300 años después",
-    "frase_famosa": "Lo que sabemos es una gota; lo que ignoramos, un océano"
+    "dato_inspirador": "Sus descubrimientos siguen siendo fundamentales después de tres siglos.",
+    "frase_famosa": "Lo que sabemos es una gota; lo que ignoramos, un océano."
   },
   {
     "nombre": "Stephen Hawking",
-    "aporte": "Radiación Hawking (agujeros negros emiten energía)",
+    "aporte": "Radiación Hawking y agujeros negros",
     "categoria": "Astrofísica",
     "curiosidades": [
-      "Su voz era generada por una computadora, era su sello personal",
-      "Apareció en Los Simpson, Star Trek y The Big Bang Theory",
-      "Los médicos le dieron 2 años de vida, pero vivió 76 años"
+      "Su voz era generada por un sintetizador de voz.",
+      "Apareció en series como Los Simpson y Star Trek.",
+      "Los médicos le pronosticaron dos años de vida, pero vivió hasta los 76."
     ],
-    "dato_inspirador": "Demostró que la mente es más poderosa que el cuerpo",
-    "frase_famosa": "Mientras haya vida, hay esperanza"
+    "dato_inspirador": "Demostró que la mente es más poderosa que el cuerpo.",
+    "frase_famosa": "Mientras haya vida, hay esperanza."
   },
   {
     "nombre": "Rosalind Franklin",
-    "aporte": "Descubrió la estructura del ADN (doble hélice)",
+    "aporte": "Descubrimiento de la estructura del ADN",
     "categoria": "Biología",
     "curiosidades": [
-      "Su famosa 'Foto 51' fue clave para descifrar el ADN",
-      "No recibió el Premio Nobel, se lo dieron a Watson y Crick",
-      "Era experta en cristalografía de rayos X"
+      "Su famosa 'Foto 51' fue clave para descifrar el ADN.",
+      "No fue reconocida con el Premio Nobel.",
+      "Era experta en cristalografía de rayos X."
     ],
-    "dato_inspirador": "Su trabajo fue fundamental para la biología moderna, aunque no fue reconocida en vida",
-    "frase_famosa": "La ciencia y la vida no pueden separarse"
+    "dato_inspirador": "Su trabajo fue fundamental para la biología moderna.",
+    "frase_famosa": "La ciencia y la vida no pueden separarse."
   }
 ]
