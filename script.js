@@ -174,3 +174,27 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     menu.appendChild(linkTodos);
 });
+
+// =============================================
+// BOTÓN VOLVER ARRIBA
+// =============================================
+document.addEventListener('DOMContentLoaded', function() {
+    const btnVolver = document.getElementById('btnVolverArriba');
+
+    // Mostrar/ocultar botón según el scroll
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 300) {
+            btnVolver.classList.add('visible');
+        } else {
+            btnVolver.classList.remove('visible');
+        }
+    });
+
+    // Al hacer clic, volver arriba suavemente
+    btnVolver.addEventListener('click', function() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+});
