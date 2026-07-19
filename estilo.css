@@ -120,6 +120,81 @@ header p {
     background: #1A2A3A;
 }
 
+#cientifico-dia {
+    margin: 40px 0 30px 0;
+}
+
+#cientifico-dia h2 {
+    font-size: 1.8em;
+    color: #2C3E50;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.cientifico-destacado {
+    background: #F5F5F5;
+    border-radius: 12px;
+    padding: 30px;
+    border: 2px solid #2C3E50;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.cientifico-destacado h3 {
+    font-size: 2em;
+    color: #2C3E50;
+    margin-bottom: 5px;
+}
+
+.cientifico-destacado .categoria-destacada {
+    display: inline-block;
+    background: #2C3E50;
+    color: #FFFFFF;
+    padding: 4px 16px;
+    border-radius: 20px;
+    font-size: 0.8em;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin: 8px 0 12px 0;
+}
+
+.cientifico-destacado .frase-destacada {
+    font-size: 1.3em;
+    font-style: italic;
+    color: #4A4A4A;
+    margin: 15px 0 10px 0;
+    padding: 15px;
+    background: #FFFFFF;
+    border-radius: 8px;
+    border-left: 4px solid #2C3E50;
+}
+
+.cientifico-destacado .aporte-destacado {
+    color: #555555;
+    font-size: 1em;
+    margin-top: 10px;
+}
+
+.cientifico-destacado .ver-mas {
+    display: inline-block;
+    margin-top: 15px;
+    color: #2C3E50;
+    font-weight: 600;
+    text-decoration: none;
+    border-bottom: 2px solid #2C3E50;
+    padding-bottom: 3px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.cientifico-destacado .ver-mas:hover {
+    color: #1A2A3A;
+    border-bottom-color: #1A2A3A;
+}
+
 #categorias {
     margin-bottom: 40px;
 }
@@ -190,12 +265,36 @@ header p {
     transition: all 0.2s ease;
     border: 1px solid #E0E0E0;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
 }
 
 .cientifico:hover {
     background: #EEEEEE;
     border-color: #CCCCCC;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.cientifico .imagen-container {
+    flex-shrink: 0;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid #2C3E50;
+    background: #FFFFFF;
+}
+
+.cientifico .imagen-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.cientifico .contenido {
+    flex: 1;
+    min-width: 0;
 }
 
 .cientifico h2 {
@@ -309,7 +408,6 @@ footer .footer-leyenda {
     font-style: italic;
 }
 
-/* ====== BUSCADOR ====== */
 .buscador-container {
     text-align: center;
     margin: 15px 0 25px 0;
@@ -372,7 +470,6 @@ footer .footer-leyenda {
     color: #888888;
 }
 
-/* ====== BOTÓN VOLVER ARRIBA ====== */
 #btnVolverArriba {
     position: fixed;
     bottom: 30px;
@@ -411,85 +508,19 @@ footer .footer-leyenda {
         bottom: 20px;
         right: 20px;
     }
+
+    .cientifico {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .cientifico .imagen-container {
+        width: 100px;
+        height: 100px;
+    }
 }
 
-/* ====== CIENTÍFICO DEL DÍA ====== */
-#cientifico-dia {
-    margin: 40px 0 30px 0;
-}
-
-#cientifico-dia h2 {
-    font-size: 1.8em;
-    color: #2C3E50;
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-.cientifico-destacado {
-    background: #F5F5F5;
-    border-radius: 12px;
-    padding: 30px;
-    border: 2px solid #2C3E50;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-    text-align: center;
-    max-width: 700px;
-    margin: 0 auto;
-}
-
-.cientifico-destacado h3 {
-    font-size: 2em;
-    color: #2C3E50;
-    margin-bottom: 5px;
-}
-
-.cientifico-destacado .categoria-destacada {
-    display: inline-block;
-    background: #2C3E50;
-    color: #FFFFFF;
-    padding: 4px 16px;
-    border-radius: 20px;
-    font-size: 0.8em;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    margin: 8px 0 12px 0;
-}
-
-.cientifico-destacado .frase-destacada {
-    font-size: 1.3em;
-    font-style: italic;
-    color: #4A4A4A;
-    margin: 15px 0 10px 0;
-    padding: 15px;
-    background: #FFFFFF;
-    border-radius: 8px;
-    border-left: 4px solid #2C3E50;
-}
-
-.cientifico-destacado .aporte-destacado {
-    color: #555555;
-    font-size: 1em;
-    margin-top: 10px;
-}
-
-.cientifico-destacado .ver-mas {
-    display: inline-block;
-    margin-top: 15px;
-    color: #2C3E50;
-    font-weight: 600;
-    text-decoration: none;
-    border-bottom: 2px solid #2C3E50;
-    padding-bottom: 3px;
-    transition: all 0.3s ease;
-    cursor: pointer;
-}
-
-.cientifico-destacado .ver-mas:hover {
-    color: #1A2A3A;
-    border-bottom-color: #1A2A3A;
-}
-
-/* ====== RESPONSIVE ====== */
 @media (min-width: 768px) {
     body {
         padding: 30px;
@@ -523,109 +554,4 @@ footer .footer-leyenda {
         font-size: 1.1em;
     }
 
-    .bienvenida .frase-destacada {
-        font-size: 1.4em;
-    }
-
-    #contenedor-cientificos {
-        grid-template-columns: 1fr 1fr;
-        gap: 30px;
-    }
-
-    .cientifico h2 {
-        font-size: 1.6em;
-    }
-
-    .cientifico {
-        padding: 25px 30px;
-    }
-
-    .grid-categorias {
-        grid-template-columns: repeat(4, 1fr);
-        gap: 20px;
-    }
-
-    .categoria-item {
-        padding: 25px 20px;
-    }
-
-    .categoria-item h3 {
-        font-size: 1.3em;
-    }
-
-    #categorias h2, #cientificos h2 {
-        font-size: 1.8em;
-    }
-}
-
-@media (min-width: 1024px) {
-    body {
-        padding: 40px;
-        max-width: 1200px;
-    }
-
-    header h1 {
-        font-size: 3.5em;
-    }
-
-    #contenedor-cientificos {
-        grid-template-columns: 1fr 1fr 1fr;
-        gap: 35px;
-    }
-
-    .cientifico {
-        padding: 30px 35px;
-    }
-
-    .cientifico h2 {
-        font-size: 1.7em;
-    }
-
-    .menu {
-        gap: 45px;
-    }
-
-    .menu a {
-        font-size: 1.15em;
-    }
-
-    .grid-categorias {
-        gap: 25px;
-    }
-
-    .categoria-item {
-        padding: 30px 25px;
-    }
-
-    .categoria-item h3 {
-        font-size: 1.4em;
-    }
-
-    #inicio {
-        padding: 60px 50px;
-    }
-
-    .bienvenida h2 {
-        font-size: 2.5em;
-    }
-
-    .bienvenida p {
-        font-size: 1.2em;
-    }
-
-    .bienvenida .frase-destacada {
-        font-size: 1.6em;
-    }
-}
-
-@media (min-width: 1400px) {
-    body {
-        padding: 50px;
-        max-width: 1400px;
-    }
-
-    #contenedor-cientificos {
-        grid-template-columns: 1fr 1fr 1fr 1fr;
-        gap: 40px;
-    }
-}
+    .bienvenida .frase-destacada
