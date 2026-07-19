@@ -27,7 +27,38 @@ fetch('datos.json')
         `;
     });
 
+//
 // =============================================
+// FUNCIÓN: CONTAR CIENTÍFICOS POR CATEGORÍA
+// =============================================
+function contarPorCategoria(cientificos) {
+    const conteo = {};
+    cientificos.forEach(c => {
+        const cat = c.categoria || 'Sin categoría';
+        conteo[cat] = (conteo[cat] || 0) + 1;
+    });
+    return conteo;
+}
+
+// =============================================
+// FUNCIÓN: ACTUALIZAR CONTADORES EN CATEGORÍAS
+// =============================================
+function actualizarContadoresCategorias(conteo) {
+    const items = document.querySelectorAll('.categoria-item');
+    items.forEach(item => {
+        const categoria = item.getAttribute('data-categoria');
+        const cantidad = conteo[categoria] || 0;
+        const h3 = item.querySelector('h3');
+        if (h3) {
+            // Si ya tiene número, actualizarlo
+            if (h3.textContent.includes('(')) {
+                h3.textContent = h3.textContent.replace(/\(.*\)/, `(${cantidad})`);
+            } else {
+                h3.textContent = `${h3.textContent} (${cantidad})`;
+            }
+        }
+    });
+} =============================================
 // FUNCIÓN: Mostrar científicos
 // =============================================
 function mostrarCientificos(cientificos) {
